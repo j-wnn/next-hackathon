@@ -18,7 +18,7 @@ const FooterContainer = styled.footer`
 const Footer = () => {
   return (
     <FooterContainer className="home-footer">
-      © 2024 이상형 월드컵
+      © 2025 이상형 월드컵
     </FooterContainer>
   );
 };

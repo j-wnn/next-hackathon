@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "@emotion/styled";
 
 const CardWrapper = styled.div`
-<<<<<<< HEAD
   position: relative;
   border-radius: 12px;
   overflow: hidden;
@@ -74,105 +73,6 @@ const CardTitle = styled.div`
   font-size: 1.3rem;
   background-color: #fff;
   color: #000;
-=======
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 320px;
-    height: 100%;
-    will-change: transform, opacity;
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    &.moveToCenter {
-        position: fixed !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) scale(1.05) !important;
-        z-index: 100 !important;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3) !important;
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-
-    &.slideLeft {
-        animation: slideLeft 1s forwards;
-    }
-
-    &.slideRight {
-        animation: slideRight 1s forwards;
-    }
-
-    @keyframes moveToCenter {
-        0% {
-            transform: translate(0, 0);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        100% {
-            transform: translate(${(props) => props.centerShift || "0"}, 0);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-        }
-    }
-
-    @keyframes slideLeft {
-        0% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(-200%);
-            opacity: 0;
-        }
-    }
-
-    @keyframes slideRight {
-        0% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(200%);
-            opacity: 0;
-        }
-    }
-`;
-
-const CardImage = styled.img`
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-`;
-
-const PlaceholderImage = styled.div`
-    width: 100%;
-    aspect-ratio: 1/1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f2fa;
-    font-weight: 500;
-    font-size: 1.2rem;
-    color: #666;
-`;
-
-const CardTitle = styled.div`
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.3rem;
-    background-color: rgba(255, 255, 255, 0.95);
->>>>>>> pkh
 `;
 
 /**
