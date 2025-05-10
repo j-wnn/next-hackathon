@@ -4,252 +4,302 @@
 export const cheeringItems = [
   {
     id: 1,
-    name: "에스파",
-    image: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCXUUr%2FbtrhThE7JT5%2FI71I3Xkn6M6R5hMhRmF4u0%2Fimg.jpg",
+    name: "뱃노래",
+    image: "/cheering/Slide 16_9 - 1.png",
   },
   {
     id: 2,
-    name: "아이브",
-    image: "https://cdn.bhdw.net/im/ive-kpop-band-members-kitsch-mv-shoot-wallpaper-117859_w635.webp",
+    name: "엘리제를 위하여",
+    image: "/cheering/Slide 16_9 - 2.png",
   },
   { 
     id: 3, 
-    name: "지코", 
-    image: "https://blog.kakaocdn.net/dn/bappqA/btrR4GhPvqs/izyUoGWn9Z6wCGRRdcOKJ1/img.jpg" 
+    name: "석탑", 
+    image: "/cheering/Slide 16_9 - 3.png"
   },
   { 
     id: 4, 
-    name: "뉴진스", 
-    image: "https://a-static.besthdwallpaper.com/newjeans-all-members-omg-mv-shoot-wallpaper-3440x1440-108346_15.jpg" 
+    name: "지야의 함성", 
+    image: "/cheering/Slide 16_9 - 4.png"
   },
   { 
     id: 5, 
-    name: "스트레이 키즈", 
-    image: "https://img1.newsis.com/2023/06/02/NISI20230602_0001280690_web.jpg" 
+    name: "레이몽드 서곡", 
+    image: "/cheering/Slide 16_9 - 5.png"
   },
   { 
     id: 6, 
-    name: "세븐틴", 
-    image: "https://img1.newsis.com/2022/07/13/NISI20220713_0001040300_web.jpg" 
+    name: "젊은 그대", 
+    image: "/cheering/Slide 16_9 - 6.png"
   },
   { 
     id: 7, 
-    name: "권은비", 
-    image: "https://blog.kakaocdn.net/dn/bNib4T/btqQmQl50mv/kV3hYECckUoWykv44bdiQ0/img.jpg" 
+    name: "고래 사냥", 
+    image: "/cheering/Slide 16_9 - 7.png"
   },
   { 
     id: 8, 
-    name: "투모로우바이투게더", 
-    image: "https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosunbiz/XOOMIXLKGC5SKB2X3N2IQ6CZM4.jpg" 
+    name: "무인도", 
+    image: "/cheering/Slide 16_9 - 8.png"
   },
   { 
     id: 9, 
-    name: "엔하이픈", 
-    image: "https://img1.newsis.com/2021/07/24/NISI20210724_0000794402_web.jpg" 
+    name: "도망자", 
+    image: "/cheering/Slide 16_9 - 9.png"
   },
   { 
     id: 10, 
-    name: "트와이스", 
-    image: "https://a-static.besthdwallpaper.com/twice-girl-music-group-fun-poses-wallpaper-1920x1080-115298_48.jpg" 
+    name: "응원의 노래", 
+    image: "/cheering/Slide 16_9 - 10.png"
   },
   { 
     id: 11, 
-    name: "르세라핌", 
-    image: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ns/2023/05/14/NISI20230503_0001257602_web.jpg"
+    name: "민족의 아리아", 
+    image: "/cheering/Slide 16_9 - 11.png"
   },
   { 
     id: 12, 
-    name: "레드벨벳", 
-    image: "https://newsimg.sedaily.com/2018/08/17/1S3E8TWU1N_1.jpg" 
+    name: "꼬마야", 
+    image: "/cheering/Slide 16_9 - 12.png"
   },
   { 
     id: 13, 
-    name: "기리보이", 
-    image: "https://img.wkorea.com/w/2019/12/style_5e08de43e1b26-500x354-1577639511.jpg"
+    name: "영원하라", 
+    image: "/cheering/Slide 16_9 - 13.png"
   },
   { 
     id: 14, 
-    name: "있지", 
-    image: "https://live.staticflickr.com/65535/52287342104_5226ec9355_o.jpg" 
+    name: "하늘이여", 
+    image: "/cheering/Slide 16_9 - 14.png"
   },
   { 
     id: 15, 
-    name: "NCT", 
-    image: "https://rare-gallery.com/mocahbig/1332060-NCT-HD-Wallpaper.jpg" 
+    name: "출사표", 
+    image: "/cheering/Slide 16_9 - 15.png"
   },
   { 
     id: 16, 
-    name: "몬스타엑스", 
-    image: "https://images.khan.co.kr/article/2021/05/26/l_2021052602001355700245761.jpg" 
+    name: "세타령", 
+    image: "/cheering/Slide 16_9 - 16.png"
   },
   { 
     id: 17, 
-    name: "에이티즈", 
-    image: "https://cdn.m-i.kr/news/photo/202104/820070_593512_248.jpg" 
+    name: "하나되어", 
+    image: "/cheering/Slide 16_9 - 17.png"
   },
   { 
     id: 18, 
-    name: "트레저", 
-    image: "https://newsimg.sedaily.com/2022/02/15/2625G2JGZA_1.jpeg" 
+    name: "캉캉", 
+    image: "/cheering/Slide 16_9 - 18.png"
   },
   { 
     id: 19, 
-    name: "샤이니", 
-    image: "https://image.genie.co.kr/Y/IMAGE/IMG_MUZICAT/IV2/Genie_Magazine/2535/Mgz_Main_Top_20161005120032.jpg" 
+    name: "FOREVER", 
+    image: "/cheering/Slide 16_9 - 19.png"
   },
   { 
     id: 20, 
-    name: "오마이걸", 
-    image: "https://newsimg.hankookilbo.com/2019/07/30/201907301029063893_1.jpg" 
+    name: "들어라 보아라 그리고 기억하라", 
+    image: "/cheering/Slide 16_9 - 20.png"
   },
   { 
     id: 21, 
-    name: "백예린", 
-    image: "https://img.sbs.co.kr/newsnet/etv/upload/2019/03/19/30000624759_16v9.jpg" 
+    name: "샹젤리제", 
+    image: "/cheering/Slide 16_9 - 21.png"
   },
   { 
     id: 22, 
-    name: "위너", 
-    image: "https://img.sportsworldi.com/content/image/2020/02/18/20200218514067.jpg" 
+    name: "춥", 
+    image: "/cheering/Slide 16_9 - 22.png"
   },
   { 
     id: 23, 
-    name: "비투비", 
-    image: "https://cdn.starnewsk.com/news/photo/202304/37187_60511_2011.jpg" 
+    name: "Go 100", 
+    image: "/cheering/Slide 16_9 - 23.png"
   },
   { 
     id: 24, 
-    name: "온앤오프", 
-    image: "https://img.mbn.co.kr/filewww/news/other/2021/11/21/240001214211.jpg" 
+    name: "GoGo 고대", 
+    image: "/cheering/Slide 16_9 - 24.png"
   },
   { 
     id: 25, 
-    name: "원어스", 
-    image: "https://cf.asiaartistawards.com/news/21/2024/05/2024052008310850424_1.jpg"
+    name: "고연가(사랑)", 
+    image: "/cheering/Slide 16_9 - 25.png"
   },
   { 
     id: 26, 
-    name: "펜타곤", 
-    image: "https://img.gqkorea.co.kr/gq/2020/01/style_5e2819029ed1d-1024x683.jpg" 
+    name: "고연가(노래)", 
+    image: "/cheering/Slide 16_9 - 26.png"
   },
   { 
     id: 27, 
-    name: "브레이브걸스", 
-    image: "https://flexible.img.hani.co.kr/flexible/normal/890/593/imgdb/original/2021/0316/20210316503757.jpg" 
+    name: "막걸리나", 
+    image: "/cheering/Slide 16_9 - 27.png"
   },
   { 
     id: 28, 
-    name: "KISS OF LIFE", 
-    image: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ts/2024/07/01/15513219_1345846_3613_org.jpg" 
+    name: "일편단심", 
+    image: "/cheering/Slide 16_9 - 28.png"
   },
   { 
     id: 29, 
-    name: "권정열", 
-    image: "https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/ML4A4QZUZIVMAYCXF7OEVRGJMM.jpg" 
+    name: "KOREA", 
+    image: "/cheering/Slide 16_9 - 29.png"
   },
   { 
     id: 30, 
-    name: "카더가든", 
-    image: "https://img.hankyung.com/photo/202109/01.27526017.1.jpg" 
+    name: "아리랑", 
+    image: "/cheering/Slide 16_9 - 30.png"
   },
   { 
     id: 31, 
-    name: "슈퍼주니어", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/03/15090352/Super-Junior-13.jpg" 
+    name: "꿇어라 연세", 
+    image: "/cheering/Slide 16_9 - 31.png"
   },
   { 
     id: 32, 
-    name: "2NE1", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/04/17103953/2NE1.jpeg" 
+    name: "IPSELENTI", 
+    image: "/cheering/Slide 16_9 - 32.png"
   },
   { 
     id: 33, 
-    name: "원더걸스", 
-    image: "https://0.soompi.io/wp-content/uploads/2016/07/24180225/Wonder-Girls-Why-So-Lonely.jpg" 
+    name: "Yeah Yeah Yeah", 
+    image: "/cheering/Slide 16_9 - 33.png"
   },
   { 
     id: 34, 
-    name: "카라", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/11/28232858/KARA-2.jpeg" 
+    name: "우리는 고대", 
+    image: "/cheering/Slide 16_9 - 34.png"
   },
   { 
     id: 35, 
-    name: "비투비", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/02/21051723/BTOB-6.jpeg" 
+    name: "Never say Goodbye", 
+    image: "/cheering/Slide 16_9 - 35.png"
   },
   { 
     id: 36, 
-    name: "매드몬스터", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/11/06092123/MADMONSTER-debut.jpeg" 
+    name: "연세치킨", 
+    image: "/cheering/Slide 16_9 - 36.png"
   },
   { 
     id: 37, 
-    name: "제로베이스원", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/23194345/ZEROBASEONE-1.jpeg" 
+    name: "We are the KU", 
+    image: "/cheering/Slide 16_9 - 37.png"
   },
   { 
     id: 38, 
-    name: "아일릿", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/31232048/ILLIT-debut.jpeg" 
+    name: "까투리 사냥", 
+    image: "/cheering/Slide 16_9 - 38.png"
   },
   { 
     id: 39, 
-    name: "트리플에스", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/23194913/tripleS-AAA-1.jpg" 
+    name: "카운트다운", 
+    image: "/cheering/Slide 16_9 - 39.png"
   },
   { 
     id: 40, 
-    name: "보이넥스트도어", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/01/24215935/BOYNEXTDOOR.jpeg" 
+    name: "싱글벙글", 
+    image: "/cheering/Slide 16_9 - 40.png"
   },
   { 
     id: 41, 
-    name: "오디션", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/09/18094122/ATBO-5.jpeg" 
+    name: "쉬잇", 
+    image: "/cheering/Slide 16_9 - 41.png"
   },
   { 
     id: 42, 
-    name: "시그널", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/11/20084147/TWS-debut.jpeg" 
+    name: "청춘예찬", 
+    image: "/cheering/Slide 16_9 - 42.png"
   },
   { 
     id: 43, 
-    name: "하이키", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/24090248/H1-KEY-5.jpg" 
+    name: "너 그리고 나", 
+    image: "/cheering/Slide 16_9 - 43.png"
   },
   { 
     id: 44, 
-    name: "앨리스", 
-    image: "https://0.soompi.io/wp-content/uploads/2017/07/04084242/ELRIS-3.jpg" 
+    name: "호들갑", 
+    image: "/cheering/Slide 16_9 - 44.png"
   },
   { 
     id: 45, 
-    name: "위클리", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/06/07090736/Weeekly-5.jpeg" 
+    name: "그 이름 고대", 
+    image: "/cheering/Slide 16_9 - 45.png"
   },
   { 
     id: 46, 
-    name: "트라이비", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/16095349/TRI.BE-5.jpeg" 
+    name: "자유 정의 진리", 
+    image: "/cheering/Slide 16_9 - 46.png"
   },
   { 
     id: 47, 
-    name: "갓세븐", 
-    image: "https://0.soompi.io/wp-content/uploads/2019/05/25020442/GOT7-40.jpg" 
+    name: "쎄쎄쎄", 
+    image: "/cheering/Slide 16_9 - 47.png"
   },
   { 
     id: 48, 
-    name: "세븐틴", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/04/23220826/SEVENTEEN-21.jpeg" 
+    name: "Young Tigers", 
+    image: "/cheering/Slide 16_9 - 48.png"
   },
   { 
     id: 49, 
-    name: "에버글로우", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/05/25175557/Everglow-4.jpeg" 
+    name: "호랑이", 
+    image: "/cheering/Slide 16_9 - 49.png"
   },
   { 
     id: 50, 
-    name: "프로미스나인", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/06/02195309/fromis_9-5.jpeg" 
+    name: "화려, 피어난 함성", 
+    image: "/cheering/Slide 16_9 - 50.png"
   },
+  { 
+    id: 51, 
+    name: "승리의 서막", 
+    image: "/cheering/Slide 16_9 - 51.png"
+  },
+  { 
+    id: 52, 
+    name: "연세까스", 
+    image: "/cheering/Slide 16_9 - 52.png"
+  },
+  { 
+    id: 53, 
+    name: "KU: The Korea", 
+    image: "/cheering/Slide 16_9 - 53.png"
+  },
+  { 
+    id: 54, 
+    name: "백야", 
+    image: "/cheering/Slide 16_9 - 54.png"
+  },
+  { 
+    id: 55, 
+    name: "뱅!", 
+    image: "/cheering/Slide 16_9 - 55.png"
+  },
+  { 
+    id: 56, 
+    name: "자유의 불꽃", 
+    image: "/cheering/Slide 16_9 - 56.png"
+  },
+  { 
+    id: 57, 
+    name: "홍연", 
+    image: "/cheering/Slide 16_9 - 57.png"
+  },
+  { 
+    id: 58, 
+    name: "고연가(빛)", 
+    image: "/cheering/Slide 16_9 - 58.png"
+  },
+  { 
+    id: 59, 
+    name: "막찬('24)", 
+    image: "/cheering/Slide 16_9 - 59.png"
+  },
+  { 
+    id: 60, 
+    name: "붉은노을", 
+    image: "/cheering/Slide 16_9 - 60.png"
+  }
 ]; 

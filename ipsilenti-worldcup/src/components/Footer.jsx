@@ -9,7 +9,7 @@ const FooterContainer = styled.footer`
   text-align: center;
   font-weight: 700;
   border-top: 3px solid #000;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   font-size: 1.1rem;
   color: #000;
   position: relative;
@@ -18,7 +18,7 @@ const FooterContainer = styled.footer`
 const Footer = () => {
   return (
     <FooterContainer className="home-footer">
-      © 2025 이상형 월드컵
+      © 2025 IPSELENTI 월드컵
     </FooterContainer>
   );
 };

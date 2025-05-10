@@ -41,4 +41,5 @@ export const mascotItems = [{
   name: "안암", 
   image: "/mascot/안암.png" 
 },
+
 ]; 

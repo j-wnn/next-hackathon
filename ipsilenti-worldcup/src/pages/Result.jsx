@@ -383,8 +383,8 @@ const Result = () => {
   
   // Get winner and theme from location state or set defaults
   const winner = location.state?.winner || {
-    artistName: "우승자",
-    image: ""
+    name: "우승자",
+    image: "https://via.placeholder.com/500x500.png?text=Winner"
   };
   const theme = location.state?.theme || "이상형 월드컵";
   const totalRound = location.state?.totalRound || 8;
@@ -461,7 +461,7 @@ const Result = () => {
       // Add winner info to Firestore
       const winnerRef = collection(db, "winners");
       await addDoc(winnerRef, {
-        artistName: winner.artistName,
+        name: winner.name,
         image: winner.image,
         theme: theme,
         totalRound: totalRound,
@@ -621,7 +621,7 @@ const Result = () => {
           <LeftPanel>
             <WinnerContainer>
               <CrownIcon src="/crown.png" alt="Crown" />
-              <WinnerImage src={winner.image} alt={winner.artistName} />
+              <WinnerImage src={winner.image} alt={winner.name} />
             </WinnerContainer>
             <ButtonGroup>
               <Button onClick={handleSaveImage}>저장</Button>
@@ -629,7 +629,7 @@ const Result = () => {
               <Button onClick={handleViewRanking}>랭킹 보기</Button>
             </ButtonGroup>
             <WinnerTitle>
-              {winner.artistName} <span>{theme} 우승!</span>
+              {winner.name} <span>{theme} 우승!</span>
             </WinnerTitle>
           </LeftPanel>
           <RightPanel>

@@ -1,50 +1,55 @@
 /* 홈 페이지 전체 배경 및 컨테이너 */
 .home-root {
-  min-height: 100vh;
-  background: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   width: 100%;
-  padding: 0 16px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+  position: relative;
 }
 
 .container {
-  margin: 40px auto;
-  background: #fff;
-  border-radius: 16px;
-  border: 3px solid #000;
-  box-shadow: 8px 8px 0 #000;
-  padding: 60px 0 40px;
+  max-width: 1200px;
   width: 100%;
-  min-height: 70vh;
+  margin: 0 auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 1200px;
+  justify-content: center;
+  padding: 32px 20px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .home-title {
   font-size: 2.6rem;
   font-weight: 800;
-  margin-bottom: 40px;
   text-align: center;
   color: #000;
   position: relative;
-  padding-bottom: 12px;
+  z-index: 2;
 }
 
-.home-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 6px;
-  background-color: #8b0029;
-  border-radius: 3px;
+/* Media queries */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .curve-line-left, 
+  .curve-line-right {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .container {
+    padding: 16px;
+  }
 }
 
 .home-footer {
@@ -57,23 +62,11 @@
   padding: 20px;
   background: #f8f8f8;
   border-top: 3px solid #000;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 600px) {
-  .container {
-    padding: 40px 0 24px;
-    border-radius: 12px;
-    margin: 20px 0;
-    box-shadow: 6px 6px 0 #000;
-  }
-  .home-title {
-    font-size: 2rem;
-    margin-bottom: 30px;
-  }
-  .home-title::after {
-    width: 60px;
-    height: 4px;
-  }
   .home-footer {
     font-size: 1rem;
     margin-top: 40px;

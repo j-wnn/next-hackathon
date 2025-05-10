@@ -78,7 +78,7 @@ const WorldcupModal = ({ isOpen, onClose, theme, totalItems }) => {
           </div>
           
           <p className="round-info">
-            총 {totalItems}개 후보 중 {selectedRound}개가 무작위로 선택됩니다
+            총 {totalItems}개 후보 중 무작위로 {selectedRound}강을 진행합니다.
           </p>
         </div>
         
