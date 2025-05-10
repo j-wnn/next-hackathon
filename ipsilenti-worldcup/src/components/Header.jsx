@@ -73,7 +73,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <TitleBox>
-        <Title>IPSILENTI 월드컵</Title>
+        <Title>IPSELENTI 월드컵</Title>
         <YearBadge>2025</YearBadge>
       </TitleBox>
     </HeaderContainer>
