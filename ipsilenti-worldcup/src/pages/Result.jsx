@@ -38,17 +38,21 @@ const MainLayout = styled.div`
   }
 `;
 
-const LeftPanel = styled.div`
-  flex: 2 1 0;
-  max-width: 855px;
-  min-width: 340px;
+const PanelBase = styled.div`
   background: #fff;
-  margin: 2rem 1rem 2rem 2rem;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const LeftPanel = styled(PanelBase)`
+  flex: 2 1 0;
+  max-width: 855px;
+  min-width: 340px;
+  margin: 2rem 1rem 2rem 2rem;
   padding: 2.5rem 2rem 2.5rem 2rem;
   @media (max-width: 900px) {
     margin: 1rem 0;
@@ -58,17 +62,11 @@ const LeftPanel = styled.div`
   }
 `;
 
-const RightPanel = styled.div`
+const RightPanel = styled(PanelBase)`
   flex: 1 1 0;
   max-width: 600px;
   min-width: 320px;
-  background: #fff;
   margin: 2rem 2rem 2rem 1rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 2.5rem 2rem 2.5rem 2rem;
   @media (max-width: 900px) {
     margin: 0 0 1.5rem 0;
@@ -79,18 +77,23 @@ const RightPanel = styled.div`
 `;
 
 const WinnerTitle = styled.h2`
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 900;
   margin: 2rem 0 0.5rem 0;
   text-align: center;
   letter-spacing: -1px;
+  color: #000;
+  background: none;
   span {
-    background: #283593;
+    background: #8b0029;
     color: #fff;
-    border-radius: 6px;
-    padding: 0.1em 0.4em;
+    border-radius: 8px;
+    padding: 0.1em 0.7em;
     margin-left: 0.3em;
     font-size: 1.1em;
+    font-weight: 900;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0 #000;
   }
 `;
 
@@ -110,7 +113,8 @@ const WinnerImage = styled.img`
   max-height: 600px;
   object-fit: contain;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #8b0029;
+  box-shadow: 6px 6px 0 #000;
 `;
 
 const CrownIcon = styled.img`
@@ -130,22 +134,28 @@ const CrownIcon = styled.img`
 `;
 
 const Button = styled.button`
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem 1.7rem;
   margin: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #1a237e;
-  color: white;
-  font-size: 1rem;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background-color: #8b0029;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
   cursor: pointer;
-  transition: background-color 0.3s;
-
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.2s;
   &:hover {
-    background-color: #283593;
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
   }
   @media (max-width: 600px) {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    padding: 0.7rem 1.1rem;
   }
 `;
 
@@ -181,31 +191,41 @@ const CommentForm = styled.form`
 
 const Input = styled.input`
   padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
+  border: 3px solid #000;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #fff;
+  color: #000;
+  box-shadow: 2px 2px 0 #8b0029;
 `;
 
 const TextArea = styled.textarea`
   padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
+  border: 3px solid #000;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #fff;
+  color: #000;
   min-height: 100px;
   resize: vertical;
+  box-shadow: 2px 2px 0 #8b0029;
 `;
 
 const CommentList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
 `;
 
 const Comment = styled.div`
-  padding: 1rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 1.1rem 1.2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #8b0029;
+  font-size: 1.08rem;
 `;
 
 // 저장용 9:16 캡처 영역 스타일
@@ -224,15 +244,21 @@ const CaptureArea = styled.div`
 
 // 댓글 삭제 버튼
 const DeleteButton = styled.button`
-  background: #e53935;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 0.3rem 0.7rem;
+  background: #fff;
+  color: #8b0029;
+  border: 3px solid #8b0029;
+  border-radius: 6px;
+  padding: 0.3rem 0.9rem;
   margin-left: 1rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  &:hover { background: #b71c1c; }
+  box-shadow: 2px 2px 0 #000;
+  transition: all 0.2s;
+  &:hover { 
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
 `;
 
 // 답글 입력창 스타일
@@ -244,18 +270,28 @@ const ReplyForm = styled.form`
 const ReplyInput = styled.input`
   flex: 1;
   padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 0.95rem;
+  border: 2px solid #8b0029;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #fff;
+  color: #000;
 `;
 const ReplyButton = styled.button`
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  background: #283593;
+  padding: 0.5rem 1.1rem;
+  border: 2px solid #8b0029;
+  border-radius: 6px;
+  background: #8b0029;
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 2px 2px 0 #000;
+  transition: all 0.2s;
+  &:hover { 
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
 `;
 const ReplyList = styled.div`
   margin-left: 1.5rem;
@@ -265,36 +301,54 @@ const ReplyList = styled.div`
   gap: 0.5rem;
 `;
 const LikeButton = styled.button`
-  background: none;
-  border: none;
-  color: #e53935;
+  background: #fff;
+  border: 2px solid #8b0029;
+  color: #8b0029;
   font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
   margin-left: 0.5rem;
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  &:hover { color: #b71c1c; }
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #000;
+  padding: 0.2rem 0.7rem;
+  transition: all 0.2s;
+  &:hover { 
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
 `;
 
 const BestLabel = styled.div`
   display: inline-block;
-  background: #ffb300;
+  background: #8b0029;
   color: #fff;
-  font-weight: 700;
-  font-size: 0.95rem;
-  border-radius: 6px;
-  padding: 0.2em 0.7em;
+  font-weight: 900;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  padding: 0.2em 0.9em;
   margin-right: 0.7em;
+  border: 2.5px solid #000;
+  box-shadow: 2px 2px 0 #000;
 `;
 const ReplyToggleBtn = styled.button`
-  background: none;
-  border: none;
-  color: #283593;
-  font-size: 0.95rem;
+  background: #fff;
+  border: 2px solid #8b0029;
+  color: #8b0029;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
   margin-left: 0.7rem;
-  &:hover { text-decoration: underline; }
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #000;
+  padding: 0.2rem 0.7rem;
+  transition: all 0.2s;
+  &:hover { 
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
 `;
 
 const Result = () => {

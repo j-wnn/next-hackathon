@@ -7,7 +7,9 @@ const GridCard = ({ title, description, index }) => {
   const [showModal, setShowModal] = useState(false);
   
   const handleCardClick = () => {
-    setShowModal(true);
+    setTimeout(() => {
+      setShowModal(true);
+    }, 10);
   };
   
   const closeModal = () => {
@@ -18,7 +20,10 @@ const GridCard = ({ title, description, index }) => {
 
   return (
     <>
-      <div className="grid-card" onClick={handleCardClick}>
+      <div 
+        className={`grid-card ${showModal ? 'modal-visible' : ''}`} 
+        onClick={handleCardClick}
+      >
         <div className="grid-card-title">{title}</div>
         <div className="grid-card-desc">{description}</div>
       </div>
