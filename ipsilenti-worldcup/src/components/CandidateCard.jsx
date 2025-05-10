@@ -12,7 +12,8 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 320px;
+  width: 100%;
+  max-width: 360px;
   height: 100%;
   border: 3px solid #000;
   
@@ -47,14 +48,14 @@ const CardWrapper = styled.div`
 
 const CardImage = styled.img`
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 16/9;
   object-fit: cover;
   border-bottom: 3px solid #000;
 `;
 
 const PlaceholderImage = styled.div`
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 16/9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +71,7 @@ const CardTitle = styled.div`
   padding: 1rem;
   text-align: center;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   background-color: #fff;
   color: #000;
 `;
@@ -148,16 +149,17 @@ const CandidateCard = ({
             {item.image ? (
                 <CardImage
                     src={item.image}
-                    alt={item.artistName || item.name}
+                    alt={item.name}
                 />
             ) : (
                 <PlaceholderImage>
-                    {item.artistName || item.name}
+                    {item.name}
                 </PlaceholderImage>
             )}
-            <CardTitle>{item.artistName || item.name}</CardTitle>
+            <CardTitle>{item.name}</CardTitle>
         </CardWrapper>
     );
 };
 
 export default CandidateCard;
+ 

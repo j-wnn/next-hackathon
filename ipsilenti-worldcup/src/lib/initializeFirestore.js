@@ -47,7 +47,7 @@ export const initializeThemeData = async () => {
         // 문서 데이터 준비
         const itemData = {
           id: item.id,
-          name: item.artistName,
+          name: item.name,
           image: item.image,
           FinalWinnerCount: 0,
           MatchWinnerCount: 0,
