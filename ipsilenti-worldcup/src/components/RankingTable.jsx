@@ -6,7 +6,7 @@ const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   margin-top: 1.5rem;
@@ -15,21 +15,25 @@ const Table = styled.table`
 const Th = styled.th`
   background: #f0f2fa;
   font-weight: 700;
-  padding: 1rem 0.5rem;
-  border-bottom: 2px solid #e0e0e0;
+  padding: 0.8rem 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
   text-align: center;
+  color: #555;
+  font-size: 0.95rem;
 `;
 
 const Td = styled.td`
-  padding: 0.8rem 0.5rem;
+  padding: 0.6rem 0.5rem;
   border-bottom: 1px solid #f0f0f0;
   text-align: center;
   font-size: 1rem;
+  vertical-align: middle;
 `;
 
 const RankNumber = styled.div`
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  color: #555;
 `;
 
 const ProfileImage = styled.img`
@@ -43,6 +47,7 @@ const ProfileImage = styled.img`
 const ProfileName = styled.div`
   font-weight: 600;
   margin-top: 0.2rem;
+  font-size: 0.95rem;
 `;
 
 const NoDataMessage = styled.div`
@@ -102,11 +107,11 @@ const RankingTable = ({
     <Table>
       <thead>
         <tr>
-          <Th>순위</Th>
-          <Th>이미지</Th>
-          <Th>이름</Th>
-          <Th>우승비율<br/><span style={{fontWeight:400, fontSize:'0.95em'}}>(우승 횟수 / 전체 게임 수)</span></Th>
-          <Th>승률<br/><span style={{fontWeight:400, fontSize:'0.95em'}}>(승리횟수 / 전체 1:1대결 수)</span></Th>
+          <Th width="8%">순위</Th>
+          <Th width="12%">이미지</Th>
+          <Th width="20%">이름</Th>
+          <Th width="30%">우승비율</Th>
+          <Th width="30%">승률</Th>
         </tr>
       </thead>
       <tbody>
@@ -137,7 +142,9 @@ const RankingTable = ({
                   percent={winPercent} 
                   variant="win" 
                   value={item.tournamentWins || 0} 
-                  total={totalGames} 
+                  total={totalGames}
+                  showStats={false}
+                  barColor="#ff4d4d"
                 />
               </Td>
               <Td>
@@ -145,7 +152,9 @@ const RankingTable = ({
                   percent={matchWinRate} 
                   variant="match" 
                   value={item.wins || 0} 
-                  total={item.matches || 0} 
+                  total={item.matches || 0}
+                  showStats={false}
+                  barColor="#ff9933"
                 />
               </Td>
             </tr>

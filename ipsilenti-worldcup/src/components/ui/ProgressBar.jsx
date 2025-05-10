@@ -9,20 +9,22 @@ const ProgressContainer = styled.div`
 
 const ProgressBarWrap = styled.div`
   background: #f3f3f3;
-  border-radius: 8px;
+  border-radius: 4px;
   width: 100%;
-  height: 22px;
+  height: 20px;
   position: relative;
 `;
 
 const ProgressFill = styled.div`
   height: 100%;
-  border-radius: 8px;
-  background: ${props => props.variant === 'win' 
-    ? 'repeating-linear-gradient(135deg, #ff8a80, #ff8a80 10px, #ffb199 10px, #ffb199 20px)'
-    : props.variant === 'match' 
-      ? 'repeating-linear-gradient(135deg, #ffb300, #ffb300 10px, #ffe082 10px, #ffe082 20px)'
-      : props.color || '#283593'};
+  border-radius: 4px;
+  background: ${props => 
+    props.barColor ? props.barColor :
+    props.variant === 'win' 
+      ? '#ff4d4d'
+      : props.variant === 'match' 
+        ? '#ff9933'
+        : '#283593'};
   width: ${props => props.percent}%;
   min-width: 2%;
   transition: width 0.5s;
@@ -46,7 +48,7 @@ const PercentLabel = styled.span`
  * @param {Object} props
  * @param {number} props.percent - Percentage to fill (0-100)
  * @param {string} props.variant - Visual variant (win, match, or default)
- * @param {string} props.color - Custom color (used if variant not specified)
+ * @param {string} props.barColor - Custom color for the bar
  * @param {number} props.value - Numerator for stats
  * @param {number} props.total - Denominator for stats
  * @param {boolean} props.showStats - Whether to show the stats text
@@ -55,6 +57,7 @@ const ProgressBar = ({
   percent, 
   variant, 
   color, 
+  barColor,
   value, 
   total, 
   showStats = true,
@@ -70,7 +73,8 @@ const ProgressBar = ({
           <ProgressFill 
             percent={safePercent} 
             variant={variant} 
-            color={color} 
+            color={color}
+            barColor={barColor}
           />
         </ProgressBarWrap>
       </div>
