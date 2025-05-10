@@ -22,7 +22,7 @@ const ProgressFill = styled.div`
     props.barColor ? props.barColor :
     props.variant === 'win' 
       ? '#ff4d4d'
-      : props.variant === 'match' 
+    : props.variant === 'match' 
         ? '#ff9933'
         : '#283593'};
   width: ${props => props.percent}%;
@@ -73,7 +73,7 @@ const ProgressBar = ({
           <ProgressFill 
             percent={safePercent} 
             variant={variant} 
-            color={color}
+            color={color} 
             barColor={barColor}
           />
         </ProgressBarWrap>

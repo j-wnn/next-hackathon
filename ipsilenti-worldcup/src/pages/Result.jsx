@@ -351,8 +351,26 @@ const ReplyToggleBtn = styled.button`
   }
 `;
 
+// 크림슨 테마 저장용 캡처 영역
+const CrimsonCaptureArea = styled.div`
+  width: 600px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(139,0,41,0.12);
+  overflow: hidden;
+  position: absolute;
+  left: -9999px; // 화면에서 숨김
+  top: 0;
+`;
+
 const Result = () => {
   const resultRef = useRef(null);
+  const crimsonRef = useRef(null);
   const [nickname, setNickname] = useState('');
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
@@ -366,7 +384,7 @@ const Result = () => {
   // Get winner and theme from location state or set defaults
   const winner = location.state?.winner || {
     artistName: "우승자",
-    image: "https://via.placeholder.com/500x500.png?text=Winner"
+    image: ""
   };
   const theme = location.state?.theme || "이상형 월드컵";
   const totalRound = location.state?.totalRound || 8;
@@ -459,10 +477,10 @@ const Result = () => {
   };
 
   const handleSaveImage = async () => {
-    if (resultRef.current) {
-      const canvas = await html2canvas(resultRef.current);
+    if (crimsonRef.current) {
+      const canvas = await html2canvas(crimsonRef.current, { backgroundColor: '#fff' });
       const link = document.createElement('a');
-      link.download = 'worldcup-result.png';
+      link.download = 'ipselenti-favorite.png';
       link.href = canvas.toDataURL();
       link.click();
     }
@@ -583,8 +601,19 @@ const Result = () => {
   // 변경: deviceUUID 비교
   const deviceUUID = getDeviceUUID();
 
+  // 총 댓글+답글 수 계산
+  const totalReplyCount = Object.values(replies).reduce((sum, arr) => sum + (arr?.length || 0), 0);
+  const totalCommentAndReplyCount = comments.length + totalReplyCount;
+
   return (
     <div className="home-root">
+      {/* 강제 HEX 색상 적용 (oklch 오류 방지) */}
+      <style>{`
+        html, body, #root, .home-root, .container {
+          background: #ffffff !important;
+          color: #000000 !important;
+        }
+      `}</style>
       <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32, maxWidth: '100%', width: '100%' }}>
         <Header />
         
@@ -611,7 +640,18 @@ const Result = () => {
               </div>
             ) : (
               <CommentSection>
-                <h3>전체 댓글</h3>
+                <h3 style={{fontSize: '3em', display: 'flex', alignItems: 'baseline', gap: '0.2em'}}>
+                  전체 댓글
+                  <span style={{
+                    fontWeight: 700,
+                    fontSize: '1em',
+                    color: '#8b0029',
+                    lineHeight: 1,
+                    marginLeft: '0.2em'
+                  }}>
+                    ({totalCommentAndReplyCount}개)
+                  </span>
+                </h3>
                 
                 <CommentForm onSubmit={handleCommentSubmit}>
                   <Input
@@ -730,6 +770,59 @@ const Result = () => {
         
         <Footer />
       </div>
+      {/* 크림슨 테마 저장용 캡처 영역 (숨김) */}
+      <CrimsonCaptureArea ref={crimsonRef}>
+        {/* 상단 헤더 */}
+        <div style={{
+          width: '100%',
+          background: '#8b0029',
+          color: '#ffffff',
+          fontWeight: 900,
+          fontSize: '2.5rem',
+          textAlign: 'center',
+          padding: '1.2em 0 0.7em 0',
+          letterSpacing: '-1px',
+          fontFamily: 'inherit',
+        }}>
+          Ipselenti 최애
+        </div>
+        {/* 중앙 이미지 */}
+        <div style={{flex: 1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', width:'100%'}}>
+          <img
+            src={winner.image}
+            alt={winner.artistName}
+            style={{
+              width: '320px',
+              height: '320px',
+              objectFit: 'cover',
+              margin: '2.5em 0 1.2em 0'
+            }}
+          />
+          <div style={{
+            fontWeight: 900,
+            fontSize: '2.1rem',
+            color: '#222222',
+            marginBottom: '0.5em',
+            textAlign: 'center',
+            letterSpacing: '-1px',
+          }}>
+            {winner.artistName}
+          </div>
+        </div>
+        {/* 하단 문구 */}
+        <div style={{
+          width: '100%',
+          textAlign: 'center',
+          fontSize: '1.25rem',
+          color: '#ffffff',
+          fontWeight: 700,
+          padding: '1.5em 0 1.5em 0',
+          background: '#8b0029',
+        }}>
+          당신의 최애는 바로 <span style={{fontWeight:900, color:'#fff'}}>{winner.artistName}</span>!<br/>
+          <span style={{fontWeight:900}}>Ipselenti 월드컵에서 우승했어요 🎉</span>
+        </div>
+      </CrimsonCaptureArea>
     </div>
   );
 };
