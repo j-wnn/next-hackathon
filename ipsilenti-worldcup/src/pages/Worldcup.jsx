@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import styles from "./worldcup.module.css";
+import styles from "./Worldcup.module.css";
 import { getThemeItems, themeItems, themeNames } from "../data/themes";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -182,15 +182,23 @@ const Worldcup = () => {
         try {
             console.log(`Recording match result: ${winner.artistName} beat ${loser.artistName}`);
             
-            // Record this match in our history state
-            setMatchHistory(prev => [...prev, {
-                winnerId: winner.id,
-                loserId: loser.id,
-                stage: stage,
-                timestamp: new Date()
-            }]);
+            // 승자 통계 업데이트
+            const winnerRef = doc(db, selectedTheme, winner.id.toString());
+            await updateDoc(winnerRef, {
+                MatchWinnerCount: increment(1),
+                matchCount: increment(1),
+                updatedAt: serverTimestamp()
+            });
             
-            // Record match result to Firestore
+            // 패배자 통계 업데이트
+            const loserRef = doc(db, selectedTheme, loser.id.toString());
+            await updateDoc(loserRef, {
+                LossCount: increment(1),
+                matchCount: increment(1),
+                updatedAt: serverTimestamp()
+            });
+            
+            // 매치 히스토리 기록 (옵션)
             const matchRef = await addDoc(collection(db, "matches"), {
                 theme: selectedTheme,
                 round: selectedRound,
@@ -203,11 +211,6 @@ const Worldcup = () => {
             });
             
             console.log("Match recorded with ID:", matchRef.id);
-            
-            // Update item stats for both players
-            await updateItemMatchStats(winner.id, true);  // Winner
-            await updateItemMatchStats(loser.id, false);  // Loser
-            
         } catch (error) {
             console.error("Error recording match result:", error);
         }
@@ -274,55 +277,25 @@ const Worldcup = () => {
     // Record tournament winner
     const recordTournamentWinner = async (winner) => {
         try {
-            // Check if the theme is valid
-            if (!themeNames.includes(selectedTheme)) {
-                console.error("Invalid theme:", selectedTheme);
-                return;
-            }
-            
             console.log(`Recording tournament winner: ${winner.artistName}`);
             
-            // Update theme stats (total games count)
-            await initializeThemeStats();
+            // 우승자 통계 업데이트
+            const winnerRef = doc(db, selectedTheme, winner.id.toString());
+            await updateDoc(winnerRef, {
+                FinalWinnerCount: increment(1),
+                updatedAt: serverTimestamp()
+            });
             
-            // Record this tournament winner
-            const winnerRef = await addDoc(collection(db, "tournamentWinners"), {
+            // 우승 기록 저장 (옵션)
+            const winnerHistoryRef = await addDoc(collection(db, "winners"), {
                 theme: selectedTheme,
                 round: selectedRound,
                 winnerId: winner.id,
                 winnerName: winner.artistName,
-                winnerImage: winner.image,
-                matchHistory: matchHistory,
                 timestamp: serverTimestamp()
             });
             
-            console.log("Tournament winner recorded with ID:", winnerRef.id);
-            
-            // Update winner's tournament wins count
-            const itemRef = doc(db, "themes", selectedTheme, "items", winner.id.toString());
-            const itemDoc = await getDoc(itemRef);
-            
-            if (itemDoc.exists()) {
-                await updateDoc(itemRef, {
-                    tournamentWins: increment(1),
-                    lastWin: serverTimestamp()
-                });
-            } else {
-                // This should not happen as the item should have been created during match updates
-                // But just in case, create it
-                await setDoc(itemRef, {
-                    id: winner.id,
-                    name: winner.artistName,
-                    image: winner.image,
-                    tournamentWins: 1,
-                    wins: matchStats[winner.id].wins,
-                    matches: matchStats[winner.id].matches,
-                    winRate: matchStats[winner.id].matches > 0 ? matchStats[winner.id].wins / matchStats[winner.id].matches : 0,
-                    lastWin: serverTimestamp()
-                });
-            }
-            
-            console.log("Tournament winner stats updated successfully");
+            console.log("Tournament winner recorded with ID:", winnerHistoryRef.id);
         } catch (error) {
             console.error("Error saving tournament results:", error);
         }

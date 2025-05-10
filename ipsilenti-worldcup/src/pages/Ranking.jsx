@@ -14,8 +14,11 @@ import { themeNames } from "../data/themes"; // Import theme names from themes i
 const TableWrap = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   min-height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 `;
 
 const FilterSection = styled.div`
@@ -27,6 +30,14 @@ const FilterSection = styled.div`
 
 const SearchSection = styled.div`
   display: flex;
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333;
 `;
 
 const Ranking = () => {
@@ -95,61 +106,44 @@ const Ranking = () => {
       try {
         console.log("Fetching ranking data for theme:", selectedTheme);
         
-        // First, output debug information
-        await debugFirestore();
+        // 새로운 데이터 구조에서 테마 아이템 가져오기
+        const themeRef = collection(db, selectedTheme);
+        console.log("Fetching items from collection:", selectedTheme);
         
-        // Get theme stats (for total games)
-        const themeStatsRef = doc(db, "themeStats", selectedTheme);
-        console.log("Fetching theme stats from:", themeStatsRef.path);
-        
-        const themeStatsDoc = await getDoc(themeStatsRef);
-        
-        if (themeStatsDoc.exists()) {
-          console.log("Theme stats found:", themeStatsDoc.data());
-          setThemeStats(themeStatsDoc.data());
-        } else {
-          console.log("No theme stats found, using defaults");
-          setThemeStats({ totalGames: 0 });
-        }
-        
-        // Get item rankings for the selected theme
-        const itemsRef = collection(db, "themes", selectedTheme, "items");
-        console.log("Fetching items from:", itemsRef.path);
-        
-        // Initialize an empty array for our items
-        let items = [];
-        
-        // First, try to get items ordered by tournamentWins
-        const tournamentQuery = query(itemsRef, orderBy("tournamentWins", "desc"));
-        const itemsSnapshot = await getDocs(tournamentQuery);
+        // FinalWinnerCount 기준으로 정렬하여 문서 가져오기
+        const rankingQuery = query(themeRef, orderBy("FinalWinnerCount", "desc"));
+        const itemsSnapshot = await getDocs(rankingQuery);
         
         if (!itemsSnapshot.empty) {
-          console.log(`Found ${itemsSnapshot.size} items with tournament data`);
+          console.log(`Found ${itemsSnapshot.size} items in the theme collection`);
           
-          items = itemsSnapshot.docs.map(doc => {
+          // 문서 데이터 매핑
+          const items = itemsSnapshot.docs.map(doc => {
             const data = doc.data();
             console.log(`Item ${doc.id}:`, data);
             
             return {
               id: doc.id,
-              ...data,
-              // Ensure these fields exist with default values
-              tournamentWins: data.tournamentWins || 0,
-              wins: data.wins || 0,
-              matches: data.matches || 0,
               name: data.name || `Unknown (${doc.id})`,
-              image: data.image || "https://via.placeholder.com/100"
+              image: data.image || "https://via.placeholder.com/100",
+              tournamentWins: data.FinalWinnerCount || 0,
+              wins: data.MatchWinnerCount || 0,
+              matches: data.matchCount || 0
             };
           });
           
           setRankingItems(items);
+          
+          // 전체 게임 수 계산 (모든 FinalWinnerCount의 합)
+          const totalGames = items.reduce((sum, item) => sum + (item.tournamentWins || 0), 0);
+          setThemeStats({ totalGames });
+          
+          console.log(`Ranking data loaded: ${items.length} items, ${totalGames} total games`);
         } else {
-          console.log("No items found with tournament data");
+          console.log("No items found for this theme");
           setRankingItems([]);
+          setThemeStats({ totalGames: 0 });
         }
-        
-        // Log summary of what we found
-        console.log(`Ranking data loaded: ${items.length} items, ${themeStatsDoc.exists() ? themeStatsDoc.data().totalGames : 0} total games`);
       } catch (error) {
         console.error("Error fetching ranking data:", error);
         setError(`데이터 로딩 오류: ${error.message}`);
@@ -193,13 +187,27 @@ const Ranking = () => {
     item.name && item.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  // 1순위: 우승비율, 2순위: 승률 기준으로 정렬
+  const sortedItems = filteredItems.slice().sort((a, b) => {
+    // 우승비율 계산
+    const aWinPercent = themeStats.totalGames > 0 ? (a.tournamentWins / themeStats.totalGames) : 0;
+    const bWinPercent = themeStats.totalGames > 0 ? (b.tournamentWins / themeStats.totalGames) : 0;
+    if (bWinPercent !== aWinPercent) {
+      return bWinPercent - aWinPercent;
+    }
+    // 승률 계산
+    const aMatchRate = a.matches > 0 ? (a.wins / a.matches) : 0;
+    const bMatchRate = b.matches > 0 ? (b.wins / b.matches) : 0;
+    return bMatchRate - aMatchRate;
+  });
+
   return (
     <div className="home-root">
-      <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32 }}>
+      <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32, maxWidth: '100%', backgroundColor: '#f5f7fa' }}>
         <Header />
         
         <TableWrap>
-          <h2 style={{textAlign:'center', fontSize:'2.2rem', marginBottom:'2rem'}}>{selectedTheme} 랭킹</h2>
+          <Title>{selectedTheme} 랭킹</Title>
           
           <FilterSection>
             <ThemeSelector
@@ -218,7 +226,7 @@ const Ranking = () => {
           </FilterSection>
           
           <RankingTable
-            items={filteredItems}
+            items={sortedItems}
             totalGames={themeStats.totalGames}
             loading={loading}
             error={error}

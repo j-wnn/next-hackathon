@@ -21,6 +21,7 @@ import { db } from '../lib/firebase'; // db를 직접 가져오기
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import "../styles/home.css"; // Import home styling
+import { getDeviceUUID } from '../utils/device';
 
 // 2단 레이아웃
 const MainLayout = styled.div`
@@ -356,6 +357,7 @@ const Result = () => {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
   const [replyText, setReplyText] = useState({});
+  const [replies, setReplies] = useState({});
   const [showReplyInput, setShowReplyInput] = useState({});
   const [firebaseError, setFirebaseError] = useState(false);
   const location = useLocation();
@@ -377,6 +379,9 @@ const Result = () => {
         const commentsArray = [];
         querySnapshot.forEach((doc) => {
           commentsArray.push({ id: doc.id, ...doc.data() });
+          
+          // 각 댓글에 대한 대댓글 가져오기
+          fetchReplies(doc.id);
         });
         setComments(commentsArray);
         setFirebaseError(false);
@@ -405,6 +410,33 @@ const Result = () => {
       setFirebaseError(true);
     }
   }, [location.state]);
+
+  // 대댓글 가져오는 함수
+  const fetchReplies = async (commentId) => {
+    try {
+      const replyQuery = query(
+        collection(db, "comments", commentId, "replies"),
+        orderBy("timestamp", "asc")
+      );
+      
+      const unsubscribe = onSnapshot(replyQuery, (replySnapshot) => {
+        const replyList = [];
+        replySnapshot.forEach((replyDoc) => {
+          replyList.push({ id: replyDoc.id, ...replyDoc.data() });
+        });
+        
+        setReplies(prev => ({
+          ...prev,
+          [commentId]: replyList
+        }));
+      });
+      
+      // cleanup 함수 반환 (필요 시 사용)
+      return unsubscribe;
+    } catch (error) {
+      console.error(`Error fetching replies for comment ${commentId}:`, error);
+    }
+  };
 
   const saveWinner = async () => {
     try {
@@ -457,13 +489,20 @@ const Result = () => {
     }
 
     try {
-      await addDoc(collection(db, 'comments'), {
+      const deviceUUID = getDeviceUUID();
+      const docRef = await addDoc(collection(db, 'comments'), {
         nickname,
         comment,
-        timestamp: new Date(),
-        likes: 0 // Initialize likes count
+        timestamp: serverTimestamp(),
+        likes: 0, // Initialize likes count
+        deviceUUID // ← 기기 UUID 저장
       });
-      setNickname('');
+      
+      // 내가 작성한 댓글 ID 저장 (삭제 권한용, 백업용)
+      const myCommentIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
+      myCommentIds.push(docRef.id);
+      localStorage.setItem('myCommentIds', JSON.stringify(myCommentIds));
+      
       setComment('');
     } catch (err) {
       console.error('댓글 작성 실패:', err);
@@ -499,11 +538,13 @@ const Result = () => {
     }
     
     try {
-      await addDoc(collection(db, 'comments', commentId, 'replies'), {
+      const replyRef = await addDoc(collection(db, 'comments', commentId, 'replies'), {
         nickname,
         comment: value,
         timestamp: serverTimestamp(),
       });
+      
+      // 입력 필드 초기화
       setReplyText(prev => ({ ...prev, [commentId]: '' }));
     } catch (err) {
       console.error('답글 작성 실패:', err);
@@ -537,6 +578,11 @@ const Result = () => {
     setShowReplyInput(prev => ({ ...prev, [commentId]: !prev[commentId] }));
   };
 
+  // 댓글 삭제 버튼 노출 조건
+  // 기존: 닉네임 && localStorage myCommentIds 포함
+  // 변경: deviceUUID 비교
+  const deviceUUID = getDeviceUUID();
+
   return (
     <div className="home-root">
       <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32, maxWidth: '100%', width: '100%' }}>
@@ -554,7 +600,7 @@ const Result = () => {
               <Button onClick={handleViewRanking}>랭킹 보기</Button>
             </ButtonGroup>
             <WinnerTitle>
-              {winner.artistName} <span>{theme} {totalRound}강</span>
+              {winner.artistName} <span>{theme} 우승!</span>
             </WinnerTitle>
           </LeftPanel>
           <RightPanel>
@@ -566,10 +612,25 @@ const Result = () => {
             ) : (
               <CommentSection>
                 <h3>전체 댓글</h3>
+                
+                <CommentForm onSubmit={handleCommentSubmit}>
+                  <Input
+                    type="text"
+                    placeholder="닉네임"
+                    value={nickname}
+                    onChange={(e) => setNickname(e.target.value)}
+                  />
+                  <TextArea
+                    placeholder="댓글을 작성하세요"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                  <Button type="submit">댓글 작성</Button>
+                </CommentForm>
+                
                 <CommentList>
                   {bestComments.map((comment, idx) => {
-                    const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
-                    const canDelete = nickname && comment.nickname === nickname && myIds.includes(comment.id);
+                    const canDelete = comment.deviceUUID === deviceUUID;
                     return (
                       <Comment key={comment.id}>
                         <h4>
@@ -584,15 +645,15 @@ const Result = () => {
                             ❤️ {comment.likes || 0}
                           </LikeButton>
                           <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
-                            답글 {replyText[comment.id]?.length ? replyText[comment.id].length : ''}
+                            답글 {replies[comment.id]?.length || 0}
                           </ReplyToggleBtn>
                         </h4>
                         <p>{comment.comment}</p>
-                        <small>{new Date(comment.timestamp.toDate()).toLocaleString()}</small>
+                        <small>{comment.timestamp?.toDate ? new Date(comment.timestamp.toDate()).toLocaleString() : ''}</small>
                         {showReplyInput[comment.id] && (
                           <>
                             <ReplyList>
-                              {replyText[comment.id]?.map(reply => (
+                              {replies[comment.id]?.map(reply => (
                                 <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
                                   <b>{reply.nickname}</b>: {reply.comment}
                                   <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
@@ -616,8 +677,7 @@ const Result = () => {
                     );
                   })}
                   {restComments.map((comment) => {
-                    const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
-                    const canDelete = nickname && comment.nickname === nickname && myIds.includes(comment.id);
+                    const canDelete = comment.deviceUUID === deviceUUID;
                     return (
                       <Comment key={comment.id}>
                         <h4>
@@ -631,15 +691,15 @@ const Result = () => {
                             ❤️ {comment.likes || 0}
                           </LikeButton>
                           <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
-                            답글 {replyText[comment.id]?.length ? replyText[comment.id].length : ''}
+                            답글 {replies[comment.id]?.length || 0}
                           </ReplyToggleBtn>
                         </h4>
                         <p>{comment.comment}</p>
-                        <small>{new Date(comment.timestamp.toDate()).toLocaleString()}</small>
+                        <small>{comment.timestamp?.toDate ? new Date(comment.timestamp.toDate()).toLocaleString() : ''}</small>
                         {showReplyInput[comment.id] && (
                           <>
                             <ReplyList>
-                              {replyText[comment.id]?.map(reply => (
+                              {replies[comment.id]?.map(reply => (
                                 <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
                                   <b>{reply.nickname}</b>: {reply.comment}
                                   <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
@@ -663,20 +723,6 @@ const Result = () => {
                     );
                   })}
                 </CommentList>
-                <CommentForm onSubmit={handleCommentSubmit}>
-                  <Input
-                    type="text"
-                    placeholder="닉네임"
-                    value={nickname}
-                    onChange={(e) => setNickname(e.target.value)}
-                  />
-                  <TextArea
-                    placeholder="댓글을 작성하세요"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                  />
-                  <Button type="submit">댓글 작성</Button>
-                </CommentForm>
               </CommentSection>
             )}
           </RightPanel>
