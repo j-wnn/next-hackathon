@@ -12,13 +12,15 @@ import { db } from "../lib/firebase";
 import { themeNames } from "../data/themes"; // Import theme names from themes index
 
 const TableWrap = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   padding: 1.5rem 1rem;
   min-height: 100%;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem;
+    margin: 0;
+  }
 `;
 
 const FilterSection = styled.div`
@@ -26,10 +28,21 @@ const FilterSection = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
 `;
 
 const SearchSection = styled.div`
   display: flex;
+  width: 300px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h2`
@@ -38,6 +51,136 @@ const Title = styled.h2`
   font-weight: 700;
   margin-bottom: 1.5rem;
   color: #333;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+`;
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+`;
+
+const Th = styled.th`
+  padding: 0.75rem;
+  text-align: left;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  font-weight: 600;
+  color: #495057;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+`;
+
+const Td = styled.td`
+  padding: 0.75rem;
+  border-bottom: 1px solid #dee2e6;
+  color: #495057;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+`;
+
+const RankCell = styled(Td)`
+  font-weight: 600;
+  color: #495057;
+  width: 60px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    width: 40px;
+  }
+`;
+
+const NameCell = styled(Td)`
+  font-weight: 500;
+  color: #212529;
+  width: 200px;
+
+  @media (max-width: 768px) {
+    width: auto;
+  }
+`;
+
+const ScoreCell = styled(Td)`
+  font-weight: 600;
+  color: #0d6efd;
+  text-align: right;
+  width: 100px;
+
+  @media (max-width: 768px) {
+    width: 80px;
+  }
+`;
+
+const ThemeCell = styled(Td)`
+  color: #6c757d;
+  width: 150px;
+
+  @media (max-width: 768px) {
+    width: auto;
+  }
+`;
+
+const DateCell = styled(Td)`
+  color: #6c757d;
+  width: 120px;
+
+  @media (max-width: 768px) {
+    width: auto;
+  }
+`;
+
+const FilterButton = styled.button`
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background-color: ${props => props.active ? '#0d6efd' : '#fff'};
+  color: ${props => props.active ? '#fff' : '#495057'};
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+
+  &:hover {
+    background-color: ${props => props.active ? '#0b5ed7' : '#f8f9fa'};
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    margin-right: 0.3rem;
+  }
+`;
+
+const SearchInput = styled.input`
+  padding: 0.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 0.9rem;
+
+  &:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const Ranking = () => {
