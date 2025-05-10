@@ -50,6 +50,7 @@ const CandidatesContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
   margin: 1rem auto;
   width: 100%;
