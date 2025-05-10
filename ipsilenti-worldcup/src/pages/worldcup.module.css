@@ -153,3 +153,24 @@
     padding: 10px;
     border-top: 1px solid #eee;
 }
+
+.themeTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.roundBadge {
+    font-size: 1rem;
+    padding: 0.2rem 0.6rem;
+    background-color: #25c19f;
+    color: white;
+    border-radius: 20px;
+    font-weight: 500;
+}

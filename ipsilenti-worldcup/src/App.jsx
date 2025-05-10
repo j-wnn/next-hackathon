@@ -1,17 +1,19 @@
-
 import React from 'react';
 import './App.css';
-import Result from './pages/result';
-import Ranking from './pages/ranking';
+import Result from './pages/Result';
+import Ranking from './pages/Ranking';
+import Worldcup from './pages/Worldcup';
+import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Result />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/result" element={<Result />} />
         <Route path="/ranking" element={<Ranking />} />
-        <Route path="/worldcup" element={<WorldCup />} />
+        <Route path="/worldcup" element={<Worldcup />} />
       </Routes>
     </BrowserRouter>
   );

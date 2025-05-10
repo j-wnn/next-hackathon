@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import html2canvas from 'html2canvas';
-import { initializeApp } from 'firebase/app';
 import { 
-  getFirestore, 
   collection, 
   addDoc, 
   query, 
@@ -18,20 +16,11 @@ import {
   collectionGroup,
   serverTimestamp,
 } from 'firebase/firestore';
-
-// Firebase 설정
-const firebaseConfig = {
-    apiKey: "AIzaSyDHQdKh0KTYXKtGfapCB7Ztmf1WL3vY2kA",
-    authDomain: "ipsilenti-worldcup.firebaseapp.com",
-    projectId: "ipsilenti-worldcup",
-    storageBucket: "ipsilenti-worldcup.firebasestorage.app",
-    messagingSenderId: "580015752446",
-    appId: "1:580015752446:web:77fe98cbacd4fe68c391af",
-    measurementId: "G-NR9H8T2D2K"
-  };
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { useLocation, useNavigate } from 'react-router-dom';
+import { db } from '../lib/firebase'; // db를 직접 가져오기
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import "../styles/home.css"; // Import home styling
 
 // 2단 레이아웃
 const MainLayout = styled.div`
@@ -39,13 +28,12 @@ const MainLayout = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  width: 100vw;
-  min-height: 100vh;
-  background: #f5f5f5;
+  width: 100%;
+  min-height: 100%;
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
-    width: 100vw;
+    width: 100%;
   }
 `;
 
@@ -309,79 +297,84 @@ const ReplyToggleBtn = styled.button`
 `;
 
 const Result = () => {
-  const [winner, setWinner] = useState(null);
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState({ name: '', content: '' });
   const resultRef = useRef(null);
-  const captureRef = useRef(null);
-  const [myName, setMyName] = useState(() => localStorage.getItem('myName') || '');
-  const [replyInputs, setReplyInputs] = useState({}); // 댓글별 답글 입력값
-  const [replyLists, setReplyLists] = useState({}); // 댓글별 답글 목록
-  const [likeStates, setLikeStates] = useState({}); // 댓글별 좋아요 상태
-  const [replyOpen, setReplyOpen] = useState({}); // 댓글별 답글 토글 상태
+  const [nickname, setNickname] = useState('');
+  const [comment, setComment] = useState('');
+  const [comments, setComments] = useState([]);
+  const [replyText, setReplyText] = useState({});
+  const [showReplyInput, setShowReplyInput] = useState({});
+  const [firebaseError, setFirebaseError] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Get winner and theme from location state or set defaults
+  const winner = location.state?.winner || {
+    artistName: "우승자",
+    image: "https://via.placeholder.com/500x500.png?text=Winner"
+  };
+  const theme = location.state?.theme || "이상형 월드컵";
+  const totalRound = location.state?.totalRound || 8;
 
   useEffect(() => {
-    // URL에서 우승자 정보 가져오기
-    const params = new URLSearchParams(window.location.search);
-    const winnerParam = params.get('winner');
-    if (winnerParam) {
-      const winnerData = JSON.parse(decodeURIComponent(winnerParam));
-      setWinner(winnerData);
-    } else {
-      // 임시 테스트 데이터
-      setWinner({
-        name: "테스트 우승자",
-        image: "/test-winner.png" // public 폴더에 임시 이미지 필요
+    try {
+      // Get comments from Firestore
+      const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const commentsArray = [];
+        querySnapshot.forEach((doc) => {
+          commentsArray.push({ id: doc.id, ...doc.data() });
+        });
+        setComments(commentsArray);
+        setFirebaseError(false);
+      }, (error) => {
+        console.error("Error fetching comments:", error);
+        setFirebaseError(true);
       });
-    }
-
-    // 댓글 실시간 업데이트
-    const q = query(collection(db, 'comments'), orderBy('timestamp', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const commentList = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setComments(commentList);
-    });
-
-    // 우승자 집계 Firestore에 저장
-    if (winner && winner.name && winner.image) {
-      const saveWinner = async () => {
-        const winnerRef = doc(db, 'winners', winner.name);
-        const docSnap = await getDoc(winnerRef);
-        if (docSnap.exists()) {
-          await updateDoc(winnerRef, { count: increment(1) });
-        } else {
-          await setDoc(winnerRef, { name: winner.name, image: winner.image, count: 1 });
+      
+      // Save winner to Firestore if available
+      if (location.state?.winner) {
+        saveWinner().catch(err => {
+          console.error("Failed to save winner:", err);
+          setFirebaseError(true);
+        });
+      }
+      
+      return () => {
+        try {
+          unsubscribe();
+        } catch (err) {
+          console.error("Error unsubscribing:", err);
         }
       };
-      saveWinner();
+    } catch (error) {
+      console.error("Error setting up Firebase listeners:", error);
+      setFirebaseError(true);
     }
+  }, [location.state]);
 
-    // 댓글별 대댓글(답글) 실시간 리스너
-    comments.forEach(comment => {
-      const repliesRef = collection(db, 'comments', comment.id, 'replies');
-      const q = query(repliesRef, orderBy('timestamp', 'asc'));
-      const unsubscribe = onSnapshot(q, (snapshot) => {
-        setReplyLists(prev => ({
-          ...prev,
-          [comment.id]: snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-        }));
+  const saveWinner = async () => {
+    try {
+      // Add winner info to Firestore
+      const winnerRef = collection(db, "winners");
+      await addDoc(winnerRef, {
+        artistName: winner.artistName,
+        image: winner.image,
+        theme: theme,
+        totalRound: totalRound,
+        timestamp: serverTimestamp()
       });
-      // cleanup은 생략(간단 구현)
-    });
-
-    // 좋아요 상태 로딩
-    const likes = JSON.parse(localStorage.getItem('likedComments') || '{}');
-    setLikeStates(likes);
-
-    return () => unsubscribe();
-  }, []);
+      console.log("Winner saved to database");
+      return true;
+    } catch (error) {
+      console.error("Error saving winner:", error);
+      // Silent fail - don't disrupt user experience
+      return false;
+    }
+  };
 
   const handleSaveImage = async () => {
-    if (captureRef.current) {
-      const canvas = await html2canvas(captureRef.current);
+    if (resultRef.current) {
+      const canvas = await html2canvas(resultRef.current);
       const link = document.createElement('a');
       link.download = 'worldcup-result.png';
       link.href = canvas.toDataURL();
@@ -398,227 +391,246 @@ const Result = () => {
     }
   };
 
+  const handleViewRanking = () => {
+    navigate('/ranking', { state: { theme: theme } });
+  };
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    if (!newComment.name || !newComment.content) return;
+    if (!nickname || !comment) {
+      alert('닉네임과 댓글 내용을 모두 입력해주세요.');
+      return;
+    }
 
     try {
-      const docRef = await addDoc(collection(db, 'comments'), {
-        ...newComment,
+      await addDoc(collection(db, 'comments'), {
+        nickname,
+        comment,
         timestamp: new Date(),
+        likes: 0 // Initialize likes count
       });
-      setNewComment({ name: '', content: '' });
-      localStorage.setItem('myName', newComment.name); // 이름 저장
-      // 댓글 id도 저장 (여러개 작성 가능하니 배열로)
-      const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
-      myIds.push(docRef.id);
-      localStorage.setItem('myCommentIds', JSON.stringify(myIds));
-      setMyName(newComment.name);
+      setNickname('');
+      setComment('');
     } catch (err) {
       console.error('댓글 작성 실패:', err);
+      alert('댓글을 저장할 수 없습니다. 나중에 다시 시도해주세요.');
     }
   };
 
-  // 댓글 삭제
   const handleDeleteComment = async (id) => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
+    
     try {
       await deleteDoc(doc(db, 'comments', id));
-      // localStorage에서도 삭제
-      const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
-      localStorage.setItem('myCommentIds', JSON.stringify(myIds.filter(cid => cid !== id)));
     } catch (err) {
-      alert('삭제 실패');
+      console.error('댓글 삭제 실패:', err);
+      alert('삭제에 실패했습니다. 나중에 다시 시도해주세요.');
     }
   };
 
-  // 답글 입력값 변경
   const handleReplyInput = (commentId, value) => {
-    setReplyInputs(prev => ({ ...prev, [commentId]: value }));
+    setReplyText(prev => ({ ...prev, [commentId]: value }));
   };
-  // 답글 작성
+
   const handleReplySubmit = async (e, commentId) => {
     e.preventDefault();
-    const value = replyInputs[commentId];
-    if (!value) return;
+    const value = replyText[commentId];
+    if (!value) {
+      alert('답글 내용을 입력해주세요.');
+      return;
+    }
+    if (!nickname) {
+      alert('닉네임을 입력해주세요.');
+      return;
+    }
+    
     try {
       await addDoc(collection(db, 'comments', commentId, 'replies'), {
-        name: myName || '익명',
-        content: value,
+        nickname,
+        comment: value,
         timestamp: serverTimestamp(),
       });
-      setReplyInputs(prev => ({ ...prev, [commentId]: '' }));
+      setReplyText(prev => ({ ...prev, [commentId]: '' }));
     } catch (err) {
-      alert('답글 작성 실패');
+      console.error('답글 작성 실패:', err);
+      alert('답글을 저장할 수 없습니다. 나중에 다시 시도해주세요.');
     }
   };
-  // 좋아요 클릭
+
   const handleLike = async (commentId) => {
     // localStorage로 중복 방지
     const likes = JSON.parse(localStorage.getItem('likedComments') || '{}');
-    if (likes[commentId]) return;
+    if (likes[commentId]) {
+      alert('이미 좋아요를 누르셨습니다.');
+      return;
+    }
+    
     try {
       await updateDoc(doc(db, 'comments', commentId), { likes: increment(1) });
       likes[commentId] = true;
       localStorage.setItem('likedComments', JSON.stringify(likes));
-      setLikeStates(likes);
     } catch (err) {
-      alert('좋아요 실패');
+      console.error('좋아요 실패:', err);
+      alert('좋아요를 처리할 수 없습니다. 나중에 다시 시도해주세요.');
     }
   };
 
-  // 댓글 좋아요 기준 정렬 및 베스트 댓글 추출
   const sortedComments = [...comments].sort((a, b) => (b.likes || 0) - (a.likes || 0));
   const bestComments = sortedComments.slice(0, 3);
   const restComments = sortedComments.slice(3);
 
-  // 답글 토글
   const handleReplyToggle = (commentId) => {
-    setReplyOpen(prev => ({ ...prev, [commentId]: !prev[commentId] }));
+    setShowReplyInput(prev => ({ ...prev, [commentId]: !prev[commentId] }));
   };
 
-  if (!winner) return <div>Loading...</div>;
-
   return (
-    <MainLayout>
-      {/* 좌측: 이미지/타이틀/버튼 */}
-      <LeftPanel>
-        <WinnerContainer>
-          <CrownIcon src="/crown.png" alt="Crown" />
-          <WinnerImage src={winner.image} alt={winner.name} />
-        </WinnerContainer>
-        <ButtonGroup>
-          <Button onClick={handleSaveImage}>저장</Button>
-          <Button onClick={handleShare}>공유(링크 복사)</Button>
-          <Button onClick={() => window.location.href = '/ranking'}>랭킹보기</Button>
-        </ButtonGroup>
-        <WinnerTitle>
-          {winner.name} <span>우승</span>
-        </WinnerTitle>
-      </LeftPanel>
-      {/* 우측: 댓글 */}
-      <RightPanel>
-        <CommentSection>
-          <h3>전체 댓글</h3>
-          <CommentList>
-            {/* 베스트 댓글 먼저 */}
-            {bestComments.map((comment, idx) => {
-              const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
-              const canDelete = myName && comment.name === myName && myIds.includes(comment.id);
-              return (
-                <Comment key={comment.id}>
-                  <h4>
-                    <BestLabel>BEST {idx+1}</BestLabel>
-                    {comment.name}
-                    {canDelete && (
-                      <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
-                        삭제
-                      </DeleteButton>
-                    )}
-                    <LikeButton onClick={() => handleLike(comment.id)} disabled={likeStates[comment.id]}>
-                      ❤️ {comment.likes || 0}
-                    </LikeButton>
-                    <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
-                      답글 {replyLists[comment.id]?.length ? replyLists[comment.id].length : ''}
-                    </ReplyToggleBtn>
-                  </h4>
-                  <p>{comment.content}</p>
-                  <small>{new Date(comment.timestamp.toDate()).toLocaleString()}</small>
-                  {/* 답글 토글 영역 */}
-                  {replyOpen[comment.id] && (
-                    <>
-                      <ReplyList>
-                        {replyLists[comment.id]?.map(reply => (
-                          <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
-                            <b>{reply.name}</b>: {reply.content}
-                            <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
-                              {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
-                            </span>
-                          </div>
-                        ))}
-                      </ReplyList>
-                      <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
-                        <ReplyInput
-                          type="text"
-                          placeholder="답글 달기"
-                          value={replyInputs[comment.id] || ''}
-                          onChange={e => handleReplyInput(comment.id, e.target.value)}
-                        />
-                        <ReplyButton type="submit">등록</ReplyButton>
-                      </ReplyForm>
-                    </>
-                  )}
-                </Comment>
-              );
-            })}
-            {/* 나머지 댓글 */}
-            {restComments.map((comment) => {
-              const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
-              const canDelete = myName && comment.name === myName && myIds.includes(comment.id);
-              return (
-                <Comment key={comment.id}>
-                  <h4>
-                    {comment.name}
-                    {canDelete && (
-                      <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
-                        삭제
-                      </DeleteButton>
-                    )}
-                    <LikeButton onClick={() => handleLike(comment.id)} disabled={likeStates[comment.id]}>
-                      ❤️ {comment.likes || 0}
-                    </LikeButton>
-                    <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
-                      답글 {replyLists[comment.id]?.length ? replyLists[comment.id].length : ''}
-                    </ReplyToggleBtn>
-                  </h4>
-                  <p>{comment.content}</p>
-                  <small>{new Date(comment.timestamp.toDate()).toLocaleString()}</small>
-                  {/* 답글 토글 영역 */}
-                  {replyOpen[comment.id] && (
-                    <>
-                      <ReplyList>
-                        {replyLists[comment.id]?.map(reply => (
-                          <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
-                            <b>{reply.name}</b>: {reply.content}
-                            <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
-                              {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
-                            </span>
-                          </div>
-                        ))}
-                      </ReplyList>
-                      <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
-                        <ReplyInput
-                          type="text"
-                          placeholder="답글 달기"
-                          value={replyInputs[comment.id] || ''}
-                          onChange={e => handleReplyInput(comment.id, e.target.value)}
-                        />
-                        <ReplyButton type="submit">등록</ReplyButton>
-                      </ReplyForm>
-                    </>
-                  )}
-                </Comment>
-              );
-            })}
-          </CommentList>
-          {/* 댓글 작성 폼을 전체 댓글 밑에 위치 */}
-          <CommentForm onSubmit={handleCommentSubmit}>
-            <Input
-              type="text"
-              placeholder="이름"
-              value={newComment.name}
-              onChange={(e) => setNewComment({ ...newComment, name: e.target.value })}
-            />
-            <TextArea
-              placeholder="댓글을 작성하세요"
-              value={newComment.content}
-              onChange={(e) => setNewComment({ ...newComment, content: e.target.value })}
-            />
-            <Button type="submit">댓글 작성</Button>
-          </CommentForm>
-        </CommentSection>
-      </RightPanel>
-    </MainLayout>
+    <div className="home-root">
+      <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32, maxWidth: '100%', width: '100%' }}>
+        <Header />
+        
+        <MainLayout>
+          <LeftPanel>
+            <WinnerContainer>
+              <CrownIcon src="/crown.png" alt="Crown" />
+              <WinnerImage src={winner.image} alt={winner.artistName} />
+            </WinnerContainer>
+            <ButtonGroup>
+              <Button onClick={handleSaveImage}>저장</Button>
+              <Button onClick={handleShare}>공유(링크 복사)</Button>
+              <Button onClick={handleViewRanking}>랭킹 보기</Button>
+            </ButtonGroup>
+            <WinnerTitle>
+              {winner.artistName} <span>{theme} {totalRound}강</span>
+            </WinnerTitle>
+          </LeftPanel>
+          <RightPanel>
+            {firebaseError ? (
+              <div style={{ padding: "20px", textAlign: "center" }}>
+                <h3>댓글 기능을 사용할 수 없습니다</h3>
+                <p>Firebase 연결 오류로 댓글 서비스를 사용할 수 없습니다. 나중에 다시 시도해주세요.</p>
+              </div>
+            ) : (
+              <CommentSection>
+                <h3>전체 댓글</h3>
+                <CommentList>
+                  {bestComments.map((comment, idx) => {
+                    const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
+                    const canDelete = nickname && comment.nickname === nickname && myIds.includes(comment.id);
+                    return (
+                      <Comment key={comment.id}>
+                        <h4>
+                          <BestLabel>BEST {idx+1}</BestLabel>
+                          {comment.nickname}
+                          {canDelete && (
+                            <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
+                              삭제
+                            </DeleteButton>
+                          )}
+                          <LikeButton onClick={() => handleLike(comment.id)} disabled={JSON.parse(localStorage.getItem('likedComments') || '{}')[comment.id]}>
+                            ❤️ {comment.likes || 0}
+                          </LikeButton>
+                          <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
+                            답글 {replyText[comment.id]?.length ? replyText[comment.id].length : ''}
+                          </ReplyToggleBtn>
+                        </h4>
+                        <p>{comment.comment}</p>
+                        <small>{new Date(comment.timestamp.toDate()).toLocaleString()}</small>
+                        {showReplyInput[comment.id] && (
+                          <>
+                            <ReplyList>
+                              {replyText[comment.id]?.map(reply => (
+                                <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
+                                  <b>{reply.nickname}</b>: {reply.comment}
+                                  <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
+                                    {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
+                                  </span>
+                                </div>
+                              ))}
+                            </ReplyList>
+                            <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
+                              <ReplyInput
+                                type="text"
+                                placeholder="답글 달기"
+                                value={replyText[comment.id] || ''}
+                                onChange={e => handleReplyInput(comment.id, e.target.value)}
+                              />
+                              <ReplyButton type="submit">등록</ReplyButton>
+                            </ReplyForm>
+                          </>
+                        )}
+                      </Comment>
+                    );
+                  })}
+                  {restComments.map((comment) => {
+                    const myIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
+                    const canDelete = nickname && comment.nickname === nickname && myIds.includes(comment.id);
+                    return (
+                      <Comment key={comment.id}>
+                        <h4>
+                          {comment.nickname}
+                          {canDelete && (
+                            <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
+                              삭제
+                            </DeleteButton>
+                          )}
+                          <LikeButton onClick={() => handleLike(comment.id)} disabled={JSON.parse(localStorage.getItem('likedComments') || '{}')[comment.id]}>
+                            ❤️ {comment.likes || 0}
+                          </LikeButton>
+                          <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
+                            답글 {replyText[comment.id]?.length ? replyText[comment.id].length : ''}
+                          </ReplyToggleBtn>
+                        </h4>
+                        <p>{comment.comment}</p>
+                        <small>{new Date(comment.timestamp.toDate()).toLocaleString()}</small>
+                        {showReplyInput[comment.id] && (
+                          <>
+                            <ReplyList>
+                              {replyText[comment.id]?.map(reply => (
+                                <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
+                                  <b>{reply.nickname}</b>: {reply.comment}
+                                  <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
+                                    {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
+                                  </span>
+                                </div>
+                              ))}
+                            </ReplyList>
+                            <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
+                              <ReplyInput
+                                type="text"
+                                placeholder="답글 달기"
+                                value={replyText[comment.id] || ''}
+                                onChange={e => handleReplyInput(comment.id, e.target.value)}
+                              />
+                              <ReplyButton type="submit">등록</ReplyButton>
+                            </ReplyForm>
+                          </>
+                        )}
+                      </Comment>
+                    );
+                  })}
+                </CommentList>
+                <CommentForm onSubmit={handleCommentSubmit}>
+                  <Input
+                    type="text"
+                    placeholder="닉네임"
+                    value={nickname}
+                    onChange={(e) => setNickname(e.target.value)}
+                  />
+                  <TextArea
+                    placeholder="댓글을 작성하세요"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                  <Button type="submit">댓글 작성</Button>
+                </CommentForm>
+              </CommentSection>
+            )}
+          </RightPanel>
+        </MainLayout>
+        
+        <Footer />
+      </div>
+    </div>
   );
 };
 

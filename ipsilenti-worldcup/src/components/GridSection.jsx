@@ -1,14 +1,14 @@
 import React from 'react';
 import GridCard from './GridCard';
 import '../styles/gridSection.css';
+import { themeItemCounts, themeNames } from '../data/themes';
 
-const gridItems = [
-  { id: 1, title: '라인업 월드컵', description: '50팀' },
-  { id: 2, title: '응원가 월드컵', description: '30개' },
-  { id: 3, title: '디저트 월드컵', description: '8개' },
-  { id: 4, title: '음료 월드컵', description: '50개' },
-  { id: 5, title: '간식 월드컵', description: '30개' },
-];
+// 테마 정보를 동적으로 생성
+const gridItems = themeNames.map((themeName, index) => ({
+  id: index + 1,
+  title: themeName,
+  description: `${themeItemCounts[themeName]}개`
+}));
 
 const GridSection = () => {
   return (
