@@ -5,23 +5,25 @@ const CardWrapper = styled.div`
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 6px 6px 0 #000;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.2s ease;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 320px;
   height: 100%;
+  border: 3px solid #000;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translate(6px, 6px);
+    box-shadow: none;
   }
   
   &.selected {
-    box-shadow: 0 0 0 3px #25c19f, 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 3px solid #8b0029;
+    box-shadow: 6px 6px 0 #8b0029;
   }
   
   &.slideLeft {
@@ -47,6 +49,7 @@ const CardImage = styled.img`
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  border-bottom: 3px solid #000;
 `;
 
 const PlaceholderImage = styled.div`
@@ -55,19 +58,21 @@ const PlaceholderImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f2fa;
-  font-weight: 500;
-  font-size: 1.2rem;
-  color: #666;
+  background-color: #f5f5f5;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #000;
+  border-bottom: 3px solid #000;
 `;
 
 const CardTitle = styled.div`
   width: 100%;
   padding: 1rem;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.3rem;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: #fff;
+  color: #000;
 `;
 
 /**

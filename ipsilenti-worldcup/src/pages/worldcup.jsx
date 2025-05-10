@@ -25,25 +25,30 @@ import { db } from "../lib/firebase";
 import styled from "@emotion/styled";
 
 const ThemeTitle = styled.div`
-  background-color: #283593;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding: 0.7rem 1.2rem;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 1.6rem;
+  font-weight: 800;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   margin: 1rem 0;
   display: inline-flex;
   align-items: center;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000;
 `;
 
 const RoundBadge = styled.span`
-  background-color: #ffb300;
+  background-color: #8b0029;
   color: white;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
-  padding: 0.2rem 0.6rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
-  margin-left: 0.8rem;
+  margin-left: 1rem;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  transition: all 0.2s ease;
 `;
 
 const CandidatesContainer = styled.div`

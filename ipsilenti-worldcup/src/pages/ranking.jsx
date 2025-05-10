@@ -195,7 +195,7 @@ const Ranking = () => {
 
   return (
     <div className="home-root">
-      <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32, maxWidth: '100%' }}>
+      <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32 }}>
         <Header />
         
         <TableWrap>
