@@ -20,7 +20,7 @@ export const anamPubItems = [
   { 
     id: 4, 
     name: "언더하이볼", 
-    image: "https://https://pcmap.place.naver.com/restaurant/1144765975/photo#" 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20230208_253%2F1675850386343T3hT1_JPEG%2F4.JPG" 
   },
   { 
     id: 5, 

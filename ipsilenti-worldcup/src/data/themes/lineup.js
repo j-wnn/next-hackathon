@@ -30,7 +30,7 @@ export const lineupItems = [
   { 
     id: 6, 
     name: "세븐틴", 
-    image: "https://img1.newsis.com/2022/07/13/NISI20220713_0001040300_web.jpg" 
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Seventeen_Carat_Renewal_2022.png/1200px-Seventeen_Carat_Renewal_2022.png" 
   },
   { 
     id: 7, 
@@ -55,7 +55,7 @@ export const lineupItems = [
   { 
     id: 11, 
     name: "르세라핌", 
-    image: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ns/2023/05/14/NISI20230503_0001257602_web.jpg"
+    image: "https://i.namu.wiki/i/xxyTLDbYnN4uGEFNR-VpNVMa-iK5c5-zvzd4VOoBOuMBfzhqx1K8mcToaQ7K17D7OoqypoJolu3uAKURgooBOQ.webp"
   },
   { 
     id: 12, 
@@ -75,7 +75,7 @@ export const lineupItems = [
   { 
     id: 15, 
     name: "NCT", 
-    image: "https://rare-gallery.com/mocahbig/1332060-NCT-HD-Wallpaper.jpg" 
+    image: "https://a-static.besthdwallpaper.com/nct-dream-all-members-for-istj-album-shoot-wallpaper-3554x1999-120176_53.jpg" 
   },
   { 
     id: 16, 
@@ -140,7 +140,7 @@ export const lineupItems = [
   { 
     id: 28, 
     name: "KISS OF LIFE", 
-    image: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ts/2024/07/01/15513219_1345846_3613_org.jpg" 
+    image: "https://i.namu.wiki/i/j3UXEZwbSCRiuoYqx78X_IlqtbGsei844AJ7twEv0LplgNcb4rkchp0iTfa0e_UnVdB1lQyO9uZ0HGZmXWWmoQ.webp" 
   },
   { 
     id: 29, 
@@ -154,102 +154,102 @@ export const lineupItems = [
   },
   { 
     id: 31, 
-    name: "슈퍼주니어", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/03/15090352/Super-Junior-13.jpg" 
+    name: "싸이", 
+    image: "https://ojsfile.ohmynews.com/PHT_IMG_FILE/2022/0429/IE002981567_PHT.jpg" 
   },
   { 
     id: 32, 
-    name: "2NE1", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/04/17103953/2NE1.jpeg" 
+    name: "다이나믹 듀오", 
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzYstLwbVrIFsRivUc5nq6WNzl1VJbODC_Wg&s" 
   },
   { 
     id: 33, 
-    name: "원더걸스", 
-    image: "https://0.soompi.io/wp-content/uploads/2016/07/24180225/Wonder-Girls-Why-So-Lonely.jpg" 
+    name: "잔나비", 
+    image: "https://news.nateimg.co.kr/orgImg/es/2022/05/04/PS22050400017.jpg" 
   },
   { 
     id: 34, 
-    name: "카라", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/11/28232858/KARA-2.jpeg" 
+    name: "YB", 
+    image: "https://www.newsflix.co.kr/news/photo/202209/10908_9667_337.jpg" 
   },
   { 
     id: 35, 
-    name: "비투비", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/02/21051723/BTOB-6.jpeg" 
+    name: "창모", 
+    image: "https://image.yes24.com/images/chyes24/froala/0/44871/31078.jpg" 
   },
   { 
     id: 36, 
-    name: "매드몬스터", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/11/06092123/MADMONSTER-debut.jpeg" 
+    name: "키키", 
+    image: "https://img.vogue.co.kr/vogue/2025/02/style_67b43562260ec-1400x934.jpg" 
   },
   { 
     id: 37, 
     name: "제로베이스원", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/23194345/ZEROBASEONE-1.jpeg" 
+    image: "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2023/05/05/c30b492e-e370-4118-a078-1cc7736405ea.jpg" 
   },
   { 
     id: 38, 
     name: "아일릿", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/31232048/ILLIT-debut.jpeg" 
+    image: "https://d2k5miyk6y5zf0.cloudfront.net/article/MYH/20240401/MYH20240401014500641.jpg" 
   },
   { 
     id: 39, 
     name: "트리플에스", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/23194913/tripleS-AAA-1.jpg" 
+    image: "https://static.news.zumst.com/images/108/2024/05/09/5c3a40fd1f364099ae7f2fc4311f3d0b.jpg" 
   },
   { 
     id: 40, 
     name: "보이넥스트도어", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/01/24215935/BOYNEXTDOOR.jpeg" 
+    image: "https://cdn.mhnse.com/news/photo/202305/188160_188891_5544.jpg" 
   },
   { 
     id: 41, 
-    name: "오디션", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/09/18094122/ATBO-5.jpeg" 
+    name: "빈지노", 
+    image: "https://img1.newsis.com/2023/09/22/NISI20230922_0001372087_web.jpg" 
   },
   { 
     id: 42, 
-    name: "시그널", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/11/20084147/TWS-debut.jpeg" 
+    name: "이승윤", 
+    image: "https://photo.jtbc.co.kr/news/jam_photo/202412/07/bfed0f6f-a455-4e16-943c-0d3fe6b46cb5.jpg" 
   },
   { 
     id: 43, 
     name: "하이키", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/24090248/H1-KEY-5.jpg" 
+    image: "https://news.nateimg.co.kr/orgImg/sd/2022/07/14/114444523.1.jpg" 
   },
   { 
     id: 44, 
-    name: "앨리스", 
-    image: "https://0.soompi.io/wp-content/uploads/2017/07/04084242/ELRIS-3.jpg" 
+    name: "이영지", 
+    image: "https://file2.nocutnews.co.kr/newsroom/image/2022/10/21/202210211844023205_0.jpg" 
   },
   { 
     id: 45, 
-    name: "위클리", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/06/07090736/Weeekly-5.jpeg" 
+    name: "나상현씨밴드", 
+    image: "https://img.rpm9.com/news/article/2023/06/28/news-p.v1.20230628.23a0532e343647eaa09cbc9aa5140ea5_Z1.png" 
   },
   { 
     id: 46, 
-    name: "트라이비", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/16095349/TRI.BE-5.jpeg" 
+    name: "스컬&하하", 
+    image: "https://newsimg.hankookilbo.com/2017/08/31/201708310440429601_1.jpg" 
   },
   { 
     id: 47, 
-    name: "갓세븐", 
-    image: "https://0.soompi.io/wp-content/uploads/2019/05/25020442/GOT7-40.jpg" 
+    name: "QWER", 
+    image: "https://img.gqkorea.co.kr/gq/2023/09/style_6510ec8f871f0-1920x1080.jpg" 
   },
   { 
     id: 48, 
-    name: "세븐틴", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/04/23220826/SEVENTEEN-21.jpeg" 
+    name: "(여자)아이들", 
+    image: "https://i.namu.wiki/i/4nxkTCfWRaugwgCk87HJ3RecO7jMtfJjdX_CgSV_U6U92TwUoyOhTBKFJiUlyYwfIptWtcnzA53xXjMReKB-rA.webp" 
   },
   { 
     id: 49, 
-    name: "에버글로우", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/05/25175557/Everglow-4.jpeg" 
+    name: "최예나", 
+    image: "https://i.namu.wiki/i/a3gsgKpJDT4CGFWoyhSb6ahWrbkfYhWCWwRMtsa-ktDJ6XXteT6_lbPe9c7Tf4ZOFXrF0zXOW7pX_HJcSy4mWw.webp" 
   },
   { 
     id: 50, 
-    name: "프로미스나인", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/06/02195309/fromis_9-5.jpeg" 
+    name: "엔믹스", 
+    image: "https://live.staticflickr.com/65535/51912889686_49cfeda022_o.jpg" 
   },
 ]; 
