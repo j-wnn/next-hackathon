@@ -1,11 +1,8 @@
-import react from "react";
-import "./App.css";
+import React from 'react';
+import Home from './pages/home';
 
 function App() {
-    return;
+  return <Home />;
 }
-
-
-// 뼈대 라우팅
 
 export default App;

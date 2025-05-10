@@ -1,0 +1,38 @@
+.grid-card {
+  background: #f2f6fa;
+  border-radius: 12px;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  min-height: 120px;
+}
+.grid-card:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+.grid-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+.grid-card-desc {
+  font-size: 1rem;
+  color: #666;
+}
+
+@media (max-width: 600px) {
+  .grid-card {
+    padding: 20px 8px;
+    min-height: 80px;
+  }
+  .grid-card-title {
+    font-size: 1rem;
+  }
+  .grid-card-desc {
+    font-size: 0.9rem;
+  }
+} 
