@@ -1,22 +1,23 @@
-import React from 'react';
-import './App.css';
-import Result from './pages/Result';
-import Ranking from './pages/Ranking';
-import Worldcup from './pages/Worldcup';
-import Home from './pages/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from "react";
+import "./App.css";
+import Result from "./pages/Result";
+import Ranking from "./pages/Ranking";
+import WorldCup from "./pages/Worldcup";
+import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/result" element={<Result />} />
-        <Route path="/ranking" element={<Ranking />} />
-        <Route path="/worldcup" element={<Worldcup />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/result" element={<Result />} />
+                <Route path="/ranking" element={<Ranking />} />
+                <Route path="/worldcup" element={<WorldCup />} />
+                <Route path="/worldcup/:round" element={<WorldCup />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 // 뼈대 라우팅
