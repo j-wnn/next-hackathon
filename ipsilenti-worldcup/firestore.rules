@@ -46,8 +46,8 @@ service cloud.firestore {
     // 우승자 컬렉션에 대한 규칙
     match /winners/{winnerId} {
       allow read: if true;
-      allow create: if request.resource.data.keys().hasAll(['artistName', 'image', 'theme', 'timestamp'])
-        && request.resource.data.artistName is string
+      allow create: if request.resource.data.keys().hasAll(['name', 'image', 'theme', 'timestamp'])
+        && request.resource.data.name is string
         && request.resource.data.image is string
         && request.resource.data.theme is string
         && request.resource.data.timestamp is timestamp;

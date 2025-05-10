@@ -24,51 +24,37 @@ import {
 import { db } from "../lib/firebase";
 import styled from "@emotion/styled";
 
-const ThemeTitle = styled.div`
-  background-color: #283593;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-  display: inline-flex;
-  align-items: center;
-`;
-
-const RoundBadge = styled.span`
-  background-color: #ffb300;
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 700;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
-  margin-left: 0.8rem;
-`;
-
 const CandidatesContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
   margin: 1rem auto;
   width: 100%;
   max-width: 900px;
+  min-height: 45vh;
   
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
+    min-height: 55vh;
   }
 `;
 
 const CandidateWrapper = styled.div`
   flex: 1;
-  max-width: 400px;
+  max-width: 480px;
+  height: 100%;
+  max-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   @media (max-width: 768px) {
     width: 90%;
+    max-height: 35vh;
   }
 `;
 
@@ -127,23 +113,69 @@ const Worldcup = () => {
 
         // Calculate stages based on the selected round
         const itemCount = limitedItems.length;
-        setTotalRounds(itemCount / 2);
+        setTotalRounds(Math.max(1, Math.floor(itemCount / 2)));
+
+        // 표준 토너먼트 라운드 값을 사용하여 currentStage 설정
+        try {
+            const standardRounds = [32, 16, 8, 4, 2];
+            let closestStandardRound;
+            
+            // 정확히 일치하는 표준 라운드 찾기
+            if (standardRounds.includes(itemCount)) {
+                closestStandardRound = itemCount;
+            } else {
+                // 가장 가까운 작은 표준 라운드 찾기
+                closestStandardRound = standardRounds.find(r => r <= itemCount);
+            }
+            
+            // 유효한 값이 없는 경우 가장 작은 표준 라운드 사용
+            if (!closestStandardRound || closestStandardRound < 2) {
+                closestStandardRound = 2;
+            }
+            
+            setCurrentStage(closestStandardRound);
+        } catch (error) {
+            console.error("Error setting current stage:", error);
+            // 에러 발생 시 기본값 설정
+            setCurrentStage(itemCount < 4 ? 2 : (itemCount < 8 ? 4 : (itemCount < 16 ? 8 : (itemCount < 32 ? 16 : 32))));
+        }
 
         // Initialize with first pair
         setCurrentPair([limitedItems[0], limitedItems[1]]);
         setCurrentRound(1);
-        setCurrentStage(itemCount);
     };
 
     const getStages = () => {
-        const itemCount = items.length || selectedRound;
-        const stages = [];
-        let stage = itemCount;
-        while (stage > 1) {
-            stages.push(stage);
-            stage = stage / 2;
+        // 표준 토너먼트 라운드 값
+        const standardRounds = [32, 16, 8, 4, 2];
+        
+        try {
+            // 현재 라운드에 해당하는 시작점 찾기
+            let startIndex = standardRounds.indexOf(selectedRound);
+            
+            // 표준 라운드가 아닌 경우 가장 가까운 작은 표준 라운드 찾기
+            if (startIndex === -1) {
+                startIndex = standardRounds.findIndex(r => r < selectedRound);
+            }
+            
+            // 여전히 못 찾은 경우 또는 표준 라운드보다 작은 경우
+            if (startIndex === -1) {
+                // 0보다 작으면 가장 작은 표준 라운드(2강) 사용
+                if (selectedRound < 2) {
+                    return [2];
+                }
+                // 표준 라운드보다 큰 경우 전체 표준 라운드 사용
+                return standardRounds;
+            }
+            
+            // 시작점부터 끝까지의 라운드를 반환 (적어도 하나는 포함)
+            const result = standardRounds.slice(startIndex);
+            return result.length > 0 ? result : [2]; // 결과가 비어있으면 최소한 [2]를 반환
+        } catch (error) {
+            console.error("Error in getStages:", error);
+            // 에러 발생 시 기본값 반환
+            return [32, 16, 8, 4, 2];
         }
-        return stages;
     };
 
     // Initialize or update themeStats document
@@ -176,7 +208,7 @@ const Worldcup = () => {
     // Record individual match result
     const recordMatchResult = async (winner, loser, stage) => {
         try {
-            console.log(`Recording match result: ${winner.artistName} beat ${loser.artistName}`);
+            console.log(`Recording match result: ${winner.name} beat ${loser.name}`);
             
             // 승자 통계 업데이트
             const winnerRef = doc(db, selectedTheme, winner.id.toString());
@@ -200,9 +232,9 @@ const Worldcup = () => {
                 round: selectedRound,
                 stage: stage,
                 winnerId: winner.id,
-                winnerName: winner.artistName,
+                winnerName: winner.name,
                 loserId: loser.id,
-                loserName: loser.artistName,
+                loserName: loser.name,
                 timestamp: serverTimestamp()
             });
             
@@ -221,7 +253,7 @@ const Worldcup = () => {
                 return;
             }
             
-            console.log(`Updating match stats for ${itemData.artistName}, winner: ${isWinner}`);
+            console.log(`Updating match stats for ${itemData.name}, winner: ${isWinner}`);
             
             const itemRef = doc(db, "themes", selectedTheme, "items", itemId.toString());
             const itemDoc = await getDoc(itemRef);
@@ -252,7 +284,7 @@ const Worldcup = () => {
                 // Create new document if it doesn't exist
                 const newData = {
                     id: itemId,
-                    name: itemData.artistName,
+                    name: itemData.name,
                     image: itemData.image,
                     wins: isWinner ? 1 : 0,
                     matches: 1,
@@ -264,7 +296,7 @@ const Worldcup = () => {
                 await setDoc(itemRef, newData);
             }
             
-            console.log(`Match stats updated for ${itemData.artistName}`);
+            console.log(`Match stats updated for ${itemData.name}`);
         } catch (error) {
             console.error(`Error updating match stats for item ${itemId}:`, error);
         }
@@ -273,7 +305,7 @@ const Worldcup = () => {
     // Record tournament winner
     const recordTournamentWinner = async (winner) => {
         try {
-            console.log(`Recording tournament winner: ${winner.artistName}`);
+            console.log(`Recording tournament winner: ${winner.name}`);
             
             // 우승자 통계 업데이트
             const winnerRef = doc(db, selectedTheme, winner.id.toString());
@@ -287,7 +319,7 @@ const Worldcup = () => {
                 theme: selectedTheme,
                 round: selectedRound,
                 winnerId: winner.id,
-                winnerName: winner.artistName,
+                winnerName: winner.name,
                 timestamp: serverTimestamp()
             });
             
@@ -375,18 +407,23 @@ const Worldcup = () => {
 
     return (
         <div className="home-root">
-            <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32 }}>
+            <div className="container" style={{ 
+                minHeight: 'auto', 
+                justifyContent: 'flex-start', 
+                paddingTop: 10,
+                paddingBottom: 10,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.3rem'
+            }}>
                 <Header />
-                
-                <ThemeTitle>
-                    {selectedTheme} <RoundBadge>{selectedRound}강</RoundBadge>
-                </ThemeTitle>
                 
                 <TournamentProgress
                     stages={getStages()}
                     currentStage={currentStage}
                     currentRound={currentRound}
                     totalRounds={currentStage / 2}
+                    themeName={selectedTheme}
                 />
 
                 <CandidatesContainer>

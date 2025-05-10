@@ -1,24 +1,86 @@
 .grid-card {
   background: #f8f8f8;
   border-radius: 12px;
-  padding: 32px 20px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   min-height: 120px;
   position: relative;
   z-index: 1;
   border: 3px solid #000;
   box-shadow: 6px 6px 0 #000;
+  overflow: hidden;
+}
+
+/* 카드 배경에 패턴 추가 */
+.grid-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(255, 105, 135, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(139, 0, 41, 0.05) 0%, transparent 30%);
+  z-index: -1;
+  opacity: 0.8;
+}
+
+/* 카드에 테두리 추가 */
+.grid-card::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Image container */
+.grid-card-image-container {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 2px solid #000;
+}
+
+.grid-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.grid-card-content {
+  padding: 16px;
+  width: 100%;
 }
 
 /* Hover effect only when not showing modal */
 body:not(.modal-open) .grid-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.02);
   box-shadow: 8px 8px 0 #000;
+  background: #ffffff;
+}
+
+/* Hover effect for image */
+body:not(.modal-open) .grid-card:hover .grid-card-image {
+  transform: scale(1.05);
+}
+
+/* Hover 시 장식 요소 추가 */
+body:not(.modal-open) .grid-card:hover::before {
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(255, 105, 135, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(139, 0, 41, 0.15) 0%, transparent 30%);
+  opacity: 1;
 }
 
 /* Active state for card */
@@ -39,27 +101,66 @@ body:not(.modal-open) .grid-card:hover {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #000;
+  color: #8b0029;
   text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* 제목에 장식 추가 */
+.grid-card-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background-color: #8b0029;
+  border-radius: 2px;
 }
 
 .grid-card-desc {
-  font-size: 1.1rem;
-  color: #333;
+  font-size: 0.9rem;
+  color: #444;
   font-weight: 500;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 5px 0;
+  margin-top: 5px;
+  line-height: 1.3;
+  width: fit-content;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 600px) {
   .grid-card {
-    padding: 20px 8px;
     min-height: 80px;
     box-shadow: 4px 4px 0 #000;
   }
+  
+  .grid-card-image-container {
+    height: 140px;
+  }
+  
+  .grid-card-content {
+    padding: 12px 8px;
+  }
+  
   .grid-card-title {
     font-size: 1.1rem;
   }
+  
+  .grid-card-title::after {
+    width: 20px;
+  }
+  
   .grid-card-desc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    padding: 3px 0;
+    line-height: 1.2;
   }
 } 
