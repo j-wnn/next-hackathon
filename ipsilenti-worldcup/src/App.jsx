@@ -15,6 +15,7 @@ function App() {
         <Route path="/result" element={<Result />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/worldcup" element={<Worldcup />} />
+        <Route path="/worldcup/:round" element={<Worldcup />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
