@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import '../styles/WorldcupModal.css';
 import { themeItemCounts } from '../data/themes';
 
 const WorldcupModal = ({ isOpen, onClose, theme, totalItems }) => {
   const [selectedRound, setSelectedRound] = useState('8');
   const navigate = useNavigate();
+
+  // Add/remove modal-open class to body when modal opens/closes
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [isOpen]);
 
   // 현재 테마에 맞게 초기 선택 라운드를 설정
   useEffect(() => {
@@ -33,9 +48,13 @@ const WorldcupModal = ({ isOpen, onClose, theme, totalItems }) => {
     onClose();
   };
 
-  return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+  // Render modal using React Portal to attach it to the end of document body
+  // This completely detaches it from parent component flow
+  const modalContent = (
+    <div className="modal-overlay" onClick={(e) => {
+      if (e.target === e.currentTarget) onClose();
+    }}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>{theme}</h2>
           <p>라운드를 선택하고 월드컵을 시작하세요</p>
@@ -69,6 +88,12 @@ const WorldcupModal = ({ isOpen, onClose, theme, totalItems }) => {
         </div>
       </div>
     </div>
+  );
+  
+  // Create portal to render modal at the end of the document body
+  return ReactDOM.createPortal(
+    modalContent,
+    document.body
   );
 };
 
