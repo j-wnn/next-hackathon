@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 댓글 컬렉션에 대한 규칙
+    match /comments/{commentId} {
+      // 읽기는 모든 사용자에게 허용
+      allow read: if true;
+      
+      // 쓰기는 다음 조건을 만족해야 함
+      allow create: if request.resource.data.keys().hasAll(['name', 'content', 'timestamp'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 50
+        && request.resource.data.content is string
+        && request.resource.data.content.size() > 0
+        && request.resource.data.content.size() <= 500
+        && request.resource.data.timestamp is timestamp;
+      
+      // 삭제는 모든 사용자에게 허용
+      allow delete: if true;
+      
+      // 수정과 삭제는 비활성화
+      allow update: if false;
+
+      // replies(대댓글) 서브컬렉션 규칙
+      match /replies/{replyId} {
+        allow read: if true;
+        allow create: if request.resource.data.keys().hasAll(['name', 'content', 'timestamp'])
+          && request.resource.data.name is string
+          && request.resource.data.name.size() > 0
+          && request.resource.data.name.size() <= 50
+          && request.resource.data.content is string
+          && request.resource.data.content.size() > 0
+          && request.resource.data.content.size() <= 500
+          && request.resource.data.timestamp is timestamp;
+        allow delete: if true;
+        allow update: if false;
+      }
+    }
+  }
+} 

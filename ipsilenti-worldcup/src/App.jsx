@@ -1,8 +1,20 @@
 import React from 'react';
-import Home from './pages/home';
+import './App.css';
+import Result from './pages/result';
+import Ranking from './pages/ranking';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-  return <Home />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Result />} />
+        <Route path="/ranking" element={<Ranking />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
+
+// 뼈대 라우팅
 
 export default App;
