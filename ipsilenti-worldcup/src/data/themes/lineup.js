@@ -1,5 +1,5 @@
 /**
- * 라인업 월드컵 아이템 데이터
+ * 응원가 월드컵 아이템 데이터
  */
 export const lineupItems = [
   {
@@ -14,143 +14,143 @@ export const lineupItems = [
   },
   { 
     id: 3, 
-    name: "블랙핑크", 
-    image: "https://0.soompi.io/wp-content/uploads/2020/06/26111615/BLACKPINK-5.jpg" 
+    name: "지코", 
+    image: "https://blog.kakaocdn.net/dn/bappqA/btrR4GhPvqs/izyUoGWn9Z6wCGRRdcOKJ1/img.jpg" 
   },
   { 
     id: 4, 
     name: "뉴진스", 
-    image: "https://image.kpopmap.com/2023/07/newjeans-next-level-profile-cover-1.jpg" 
+    image: "https://a-static.besthdwallpaper.com/newjeans-all-members-omg-mv-shoot-wallpaper-3440x1440-108346_15.jpg" 
   },
   { 
     id: 5, 
     name: "스트레이 키즈", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/19075951/stray-kids-32.jpeg" 
+    image: "https://img1.newsis.com/2023/06/02/NISI20230602_0001280690_web.jpg" 
   },
   { 
     id: 6, 
     name: "세븐틴", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/22215242/SEVENTEEN-27.jpg" 
+    image: "https://img1.newsis.com/2022/07/13/NISI20220713_0001040300_web.jpg" 
   },
   { 
     id: 7, 
-    name: "방탄소년단", 
-    image: "https://ibighit.com/bts/images/bts/discography/proof/proof-concept-photo-door-version.jpg" 
+    name: "권은비", 
+    image: "https://blog.kakaocdn.net/dn/bNib4T/btqQmQl50mv/kV3hYECckUoWykv44bdiQ0/img.jpg" 
   },
   { 
     id: 8, 
     name: "투모로우바이투게더", 
-    image: "https://ibighit.com/txt/images/txt/discography/minisode-2-thursday-s-child/album-cover.jpg" 
+    image: "https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosunbiz/XOOMIXLKGC5SKB2X3N2IQ6CZM4.jpg" 
   },
   { 
     id: 9, 
     name: "엔하이픈", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/10082548/ENHYPEN-2.jpeg" 
+    image: "https://img1.newsis.com/2021/07/24/NISI20210724_0000794402_web.jpg" 
   },
   { 
     id: 10, 
     name: "트와이스", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/03/10090430/TWICE-31.jpeg" 
+    image: "https://a-static.besthdwallpaper.com/twice-girl-music-group-fun-poses-wallpaper-1920x1080-115298_48.jpg" 
   },
   { 
     id: 11, 
     name: "르세라핌", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/22205225/LE-SSERAFIM-22.jpg" 
+    image: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ns/2023/05/14/NISI20230503_0001257602_web.jpg"
   },
   { 
     id: 12, 
     name: "레드벨벳", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/03/21080848/red-velvet-221.jpeg" 
+    image: "https://newsimg.sedaily.com/2018/08/17/1S3E8TWU1N_1.jpg" 
   },
   { 
     id: 13, 
-    name: "엑소", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/11090033/EXO-53.jpeg" 
+    name: "기리보이", 
+    image: "https://img.wkorea.com/w/2019/12/style_5e08de43e1b26-500x354-1577639511.jpg"
   },
   { 
     id: 14, 
     name: "있지", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/04/06093254/ITZY-60.jpeg" 
+    image: "https://live.staticflickr.com/65535/52287342104_5226ec9355_o.jpg" 
   },
   { 
     id: 15, 
     name: "NCT", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/08/22163006/NCT-DREAM-23.jpeg" 
+    image: "https://rare-gallery.com/mocahbig/1332060-NCT-HD-Wallpaper.jpg" 
   },
   { 
     id: 16, 
     name: "몬스타엑스", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/09/13081738/MONSTA-X-2.jpeg" 
+    image: "https://images.khan.co.kr/article/2021/05/26/l_2021052602001355700245761.jpg" 
   },
   { 
     id: 17, 
     name: "에이티즈", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/05/23093423/ATEEZ-36.jpeg" 
+    image: "https://cdn.m-i.kr/news/photo/202104/820070_593512_248.jpg" 
   },
   { 
     id: 18, 
     name: "트레저", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/04/06013132/TREASURE-40.jpeg" 
+    image: "https://newsimg.sedaily.com/2022/02/15/2625G2JGZA_1.jpeg" 
   },
   { 
     id: 19, 
     name: "샤이니", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/04/11222536/SHINee-3-2.jpg" 
+    image: "https://image.genie.co.kr/Y/IMAGE/IMG_MUZICAT/IV2/Genie_Magazine/2535/Mgz_Main_Top_20161005120032.jpg" 
   },
   { 
     id: 20, 
     name: "오마이걸", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/05/10144952/Oh-My-Girl-8.jpeg" 
+    image: "https://newsimg.hankookilbo.com/2019/07/30/201907301029063893_1.jpg" 
   },
   { 
     id: 21, 
-    name: "워너원", 
-    image: "https://0.soompi.io/wp-content/uploads/2018/06/27150031/Wanna-One-29.jpg" 
+    name: "백예린", 
+    image: "https://img.sbs.co.kr/newsnet/etv/upload/2019/03/19/30000624759_16v9.jpg" 
   },
   { 
     id: 22, 
     name: "위너", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/12/04171732/WINNER-9.jpeg" 
+    image: "https://img.sportsworldi.com/content/image/2020/02/18/20200218514067.jpg" 
   },
   { 
     id: 23, 
     name: "비투비", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/05/22084657/BTOB-7.jpeg" 
+    image: "https://cdn.starnewsk.com/news/photo/202304/37187_60511_2011.jpg" 
   },
   { 
     id: 24, 
     name: "온앤오프", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/06/10232855/ONF.jpeg" 
+    image: "https://img.mbn.co.kr/filewww/news/other/2021/11/21/240001214211.jpg" 
   },
   { 
     id: 25, 
     name: "원어스", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/05/10235748/ONEUS-4.jpeg" 
+    image: "https://cf.asiaartistawards.com/news/21/2024/05/2024052008310850424_1.jpg"
   },
   { 
     id: 26, 
     name: "펜타곤", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/08/14234259/PENTAGON-members.jpeg" 
+    image: "https://img.gqkorea.co.kr/gq/2020/01/style_5e2819029ed1d-1024x683.jpg" 
   },
   { 
     id: 27, 
     name: "브레이브걸스", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/03/14110257/Brave-Girls-2-1.jpg" 
+    image: "https://flexible.img.hani.co.kr/flexible/normal/890/593/imgdb/original/2021/0316/20210316503757.jpg" 
   },
   { 
     id: 28, 
     name: "KISS OF LIFE", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/20084713/KISS-OF-LIFE-debut.jpeg" 
+    image: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ts/2024/07/01/15513219_1345846_3613_org.jpg" 
   },
   { 
     id: 29, 
-    name: "소녀시대", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/08/04234405/Girls-Generation-5.jpeg" 
+    name: "권정열", 
+    image: "https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/ML4A4QZUZIVMAYCXF7OEVRGJMM.jpg" 
   },
   { 
     id: 30, 
-    name: "빅뱅", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/04/05061436/BIGBANG-10.jpeg" 
+    name: "카더가든", 
+    image: "https://img.hankyung.com/photo/202109/01.27526017.1.jpg" 
   },
   { 
     id: 31, 

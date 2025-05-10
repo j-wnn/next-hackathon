@@ -142,7 +142,7 @@ const RankingTable = ({
                   percent={winPercent} 
                   variant="win" 
                   value={item.tournamentWins || 0} 
-                  total={totalGames}
+                  total={totalGames} 
                   showStats={false}
                   barColor="#ff4d4d"
                 />
@@ -152,7 +152,7 @@ const RankingTable = ({
                   percent={matchWinRate} 
                   variant="match" 
                   value={item.wins || 0} 
-                  total={item.matches || 0}
+                  total={item.matches || 0} 
                   showStats={false}
                   barColor="#ff9933"
                 />

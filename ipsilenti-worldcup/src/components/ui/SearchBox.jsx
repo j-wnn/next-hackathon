@@ -23,7 +23,7 @@ const Input = styled.input`
 const Button = styled.button`
   padding: 0.7rem 1.2rem;
   border: none;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 9px 9px 0;
   background: #283593;
   color: #fff;
   font-size: 1rem;
@@ -33,6 +33,9 @@ const Button = styled.button`
   transition: background 0.3s;
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* Ensure horizontal text */
+  writing-mode: initial;
   
   &:hover { 
     background: #1a237e; 

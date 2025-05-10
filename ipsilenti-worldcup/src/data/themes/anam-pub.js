@@ -4,252 +4,262 @@
 export const anamPubItems = [
   {
     id: 1,
-    name: "에스파",
-    image: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCXUUr%2FbtrhThE7JT5%2FI71I3Xkn6M6R5hMhRmF4u0%2Fimg.jpg",
+    name: "고연전포차",
+    image: "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrS9-1SVih0z4FPTdrNV-DlhNhXmREcpTZ0K03U0H96Cuu4-NsIYZEBAHKEcXpst7Sqe4xLM9rLL1alsNmL2YAUo7vRXnmO-FyOn28KBqge-fFVFlD9Jir5Ki-4FoO7ODTgobKxVQ=w186-h310-n-k-no-nu",
   },
   {
     id: 2,
-    name: "아이브",
-    image: "https://cdn.bhdw.net/im/ive-kpop-band-members-kitsch-mv-shoot-wallpaper-117859_w635.webp",
+    name: "땡전집",
+    image: "https://lh3.googleusercontent.com/gps-cs-s/AC9h4npFOW8u7Z7liOXSiglv_n64hX9VTJdYWzjuJ9PEc65KEvidwn6iESHtI5JpF13Y6UbIKYSHnVdwAzDynXpcwLhIeEI5thrqe1n3orrPm72fnU8mh66Rs_uKw9cZF_IAaZkuZFGD=w224-h397-k-no",
   },
   { 
     id: 3, 
-    name: "블랙핑크", 
-    image: "https://0.soompi.io/wp-content/uploads/2020/06/26111615/BLACKPINK-5.jpg" 
+    name: "56st", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200205_85%2F1580900755195dLpl0_JPEG%2FMe57-dYkWRXQeyO0TBpVWPti.jpg" 
   },
   { 
     id: 4, 
-    name: "뉴진스", 
-    image: "https://image.kpopmap.com/2023/07/newjeans-next-level-profile-cover-1.jpg" 
+    name: "언더하이볼", 
+    image: "https://https://pcmap.place.naver.com/restaurant/1144765975/photo#" 
   },
   { 
     id: 5, 
-    name: "스트레이 키즈", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/19075951/stray-kids-32.jpeg" 
+    name: "술기로운 맥주생활", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20230315_293%2F1678868654103SAfwE_JPEG%2F53072584-CF04-4C86-929D-9204394B8E8E.jpeg" 
   },
   { 
     id: 6, 
-    name: "세븐틴", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/22215242/SEVENTEEN-27.jpg" 
+    name: "탱글이문어", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20221129_76%2F1669729132990Nakpl_JPEG%2F1668752841098.jpg" 
   },
   { 
     id: 7, 
-    name: "방탄소년단", 
-    image: "https://ibighit.com/bts/images/bts/discography/proof/proof-concept-photo-door-version.jpg" 
+    name: "90엔포차", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fnaverbooking-phinf.pstatic.net%2F20250301_86%2F1740812631084CiTYx_JPEG%2F90%25BF%25A3%25C6%25F7%25C2%25F7_%25B0%25A1%25B0%25D4%25BB%25E7%25C1%25F8.jpg" 
   },
   { 
     id: 8, 
-    name: "투모로우바이투게더", 
-    image: "https://ibighit.com/txt/images/txt/discography/minisode-2-thursday-s-child/album-cover.jpg" 
+    name: "38포차", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMzEwMThfMjk2%2FMDAxNjk3NTYxODI5ODE3.1Lntx4Y4YVPOf6GadD6QF5TaeKXhnqLsxz9baEmopGog.q7wFv3g6y_5ZjYr8WR89UutdshWH8LTcKyHvsromeNMg.JPEG%2Fupload_0100cb3eaef1c92347a1d187ae16b8bf.jpeg%3Ftype%3Dw1500_60_sharpen" 
   },
   { 
     id: 9, 
-    name: "엔하이픈", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/10082548/ENHYPEN-2.jpeg" 
+    name: "오거리술집", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDA4MjBfNjUg%2FMDAxNzI0MTY0NDA0NTg5.UyYYpL7iR49-YSIgIA7ErJui-THe9lrEDOy9l0eyRM4g.Me6QX8KJdPQge3fS6rCCTiwWSE1oUhVnpOe8vaW3PQog.JPEG%2F1000052833.jpg.jpg%3Ftype%3Dw1500_60_sharpen" 
   },
   { 
     id: 10, 
-    name: "트와이스", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/03/10090430/TWICE-31.jpeg" 
+    name: "막걸리찬가", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210830_70%2F1630283418073Fdgbh_JPEG%2F6eMXdjvFnfhfmt_GqDDmfveK.jpg" 
   },
   { 
     id: 11, 
-    name: "르세라핌", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/22205225/LE-SSERAFIM-22.jpg" 
+    name: "골목집", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20230112_240%2F1673516968650QFeYt_JPEG%2F1673516939360.jpg"
   },
   { 
     id: 12, 
-    name: "레드벨벳", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/03/21080848/red-velvet-221.jpeg" 
+    name: "생마차 고대안암", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240611_154%2F1718073850245Ows6h_JPEG%2FS13.jpg" 
   },
   { 
     id: 13, 
-    name: "엑소", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/11090033/EXO-53.jpeg" 
+    name: "박가네", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200329_248%2F1585489817607oXa4U_JPEG%2FALnQn2GlhERxRIqUO-1Gcsgu.jpg"
   },
   { 
     id: 14, 
-    name: "있지", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/04/06093254/ITZY-60.jpeg" 
+    name: "에스키모고대점", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20160319_33%2F14583857180209uOSx_JPEG%2F176269603856847_2.jpeg" 
   },
   { 
     id: 15, 
-    name: "NCT", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/08/22163006/NCT-DREAM-23.jpeg" 
+    name: "제기집", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20180618_256%2F15293081851361crFW_JPEG%2F70KprYLz1woqS-fMbI4FgYSF.jpg" 
   },
   { 
     id: 16, 
-    name: "몬스타엑스", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/09/13081738/MONSTA-X-2.jpeg" 
+    name: "삼성통닭", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA0MTdfMjE2%2FMDAxNzQ0ODQ3NjY5OTAw.m_5N5BEIbA2e4-NONV_hmAc_nfQuz_napCWcScyRkG0g.lpFiwIwR-8SZZaec41-6rL8DivpeHE3BkVg5u_0dg9Yg.JPEG%2FIMG_9528.JPG" 
   },
   { 
     id: 17, 
-    name: "에이티즈", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/05/23093423/ATEEZ-36.jpeg" 
+    name: "유자유김치떡볶이", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200718_191%2F1595068110374Lzspq_JPEG%2F5tlYZ1CTeMlo6TobA_NKLkmP.jpg" 
   },
   { 
     id: 18, 
-    name: "트레저", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/04/06013132/TREASURE-40.jpeg" 
+    name: "생활맥주", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250316_120%2F1742124413156ul9KM_JPEG%2F1000035852.jpg" 
   },
   { 
     id: 19, 
-    name: "샤이니", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/04/11222536/SHINee-3-2.jpg" 
+    name: "심야식당호랑이", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA0MTJfMjAw%2FMDAxNzQ0NDY2MDMxNDg4.Su3lzRUboULvLbAmEZiO85Zo4l4gSY0ve-5RKZ3MeTcg.Guc-sO7dF39erij-TQkWWJBoWV733jKi4HSzySBttrsg.JPEG%2FIMG_5109.jpg" 
   },
   { 
     id: 20, 
-    name: "오마이걸", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/05/10144952/Oh-My-Girl-8.jpeg" 
+    name: "희야", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20231108_108%2F1699434291901AieM7_JPEG%2F3S6A9869.jpg" 
   },
   { 
     id: 21, 
-    name: "워너원", 
-    image: "https://0.soompi.io/wp-content/uploads/2018/06/27150031/Wanna-One-29.jpg" 
+    name: "맥주창고", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190125_186%2F1548426576682me1jM_JPEG%2FxR8XTG9UlcAKDfcG2L-9W7hj.jpeg.jpg" 
   },
   { 
     id: 22, 
-    name: "위너", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/12/04171732/WINNER-9.jpeg" 
+    name: "이가네황제곱창", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190122_213%2F1548145915270ouC1q_JPEG%2FSzKkWfQ64z1i9rgzUbQPjphf.jpg" 
   },
   { 
     id: 23, 
-    name: "비투비", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/05/22084657/BTOB-7.jpeg" 
+    name: "고대어시장", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240424_64%2F1713947427243eKNiP_PNG%2FIMG_2667.png" 
   },
   { 
     id: 24, 
-    name: "온앤오프", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/06/10232855/ONF.jpeg" 
+    name: "이룬포차", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250412_187%2F1744458483692nf2jj_JPEG%2F%25C0%25CC%25B7%25E9%25C6%25F7%25C2%25F7_%25C7%25B3%25BC%25B1%25B0%25A3%25C6%25C7.jpg" 
   },
-  { 
-    id: 25, 
-    name: "원어스", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/05/10235748/ONEUS-4.jpeg" 
+  {
+    id: 25,
+    name: "안암아줌마치킨",
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210824_207%2F1629803075698dppkh_JPEG%2Fg2apHmdJur6hgZKBp8QLp6aq.jpg"
   },
   { 
     id: 26, 
-    name: "펜타곤", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/08/14234259/PENTAGON-members.jpeg" 
+    name: "현이슈퍼가맥", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20230904_123%2F1693811281024svC2l_JPEG%2F1693811234435.jpg" 
   },
   { 
     id: 27, 
-    name: "브레이브걸스", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/03/14110257/Brave-Girls-2-1.jpg" 
+    name: "영철버거", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20230605_253%2F1685926947963Ez6Af_JPEG%2FMicrosoftTeams-image_%252845%2529.jpg" 
   },
   { 
     id: 28, 
-    name: "KISS OF LIFE", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/20084713/KISS-OF-LIFE-debut.jpeg" 
+    name: "비에르에프리트", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNTA0MTJfNTAg%2FMDAxNzQ0NDY1MDE4MTg5.8CrFDdgdPE00TnBECeGXREaW9JNu3BHhyiKSDmfEXuYg.iIbPoju9HXQapCdaEbYMr1Gc1AQ9u3TYrizov6bdK50g.JPEG%2F40A0C7D5-4300-475D-9BC0-DB2F081BECDD.jpeg%3Ftype%3Dw1500_60_sharpen" 
   },
   { 
     id: 29, 
-    name: "소녀시대", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/08/04234405/Girls-Generation-5.jpeg" 
+    name: "충주집", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200212_106%2F1581495238721FThGK_JPEG%2Fzs6qo_Pv6SiIt3EEneERhxkw.jpg" 
   },
   { 
     id: 30, 
-    name: "빅뱅", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/04/05061436/BIGBANG-10.jpeg" 
+    name: "형제집", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20230503_36%2F1683042007664YDKEU_JPEG%2Fimage.jpg" 
   },
   { 
     id: 31, 
-    name: "슈퍼주니어", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/03/15090352/Super-Junior-13.jpg" 
+    name: "홍도야빈대떡", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200822_295%2F159810159444459AzJ_JPEG%2FEpL_0z3MiOYwKIhsUN37zUHD.jpg" 
   },
   { 
     id: 32, 
-    name: "2NE1", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/04/17103953/2NE1.jpeg" 
+    name: "춘자", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190722_241%2F1563760212388fUqjB_JPEG%2Fb2sBjc5vuB2qzcfV7FIgGDKg.jpg" 
   },
   { 
     id: 33, 
-    name: "원더걸스", 
-    image: "https://0.soompi.io/wp-content/uploads/2016/07/24180225/Wonder-Girls-Why-So-Lonely.jpg" 
+    name: "한반도", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDEyMDJfNTIg%2FMDAxNzMzMTQ3OTYwNTcx.fK3_tF1XwmRax_PuzIfwUXIqgEYFjnelgct77JaLt-gg.jseKvfSzkQCF0DeG1B19KJ9JlbQ-PGXvBPTxKwCnLEUg.JPEG%2F1000055158.jpg.jpg%3Ftype%3Dw1500_60_sharpen" 
   },
   { 
     id: 34, 
-    name: "카라", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/11/28232858/KARA-2.jpeg" 
+    name: "박군포차", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190119_291%2F1547893546414HHorJ_JPEG%2FTPK9wFl31puHjo5fL5Me3L9V.jpg" 
   },
   { 
     id: 35, 
-    name: "비투비", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/02/21051723/BTOB-6.jpeg" 
+    name: "꼬꼬아찌", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20181224_93%2F154560175433873Y9m_JPEG%2Fjqjyq5ScJHTXAH0ugIqB1wjZ.jpeg.jpg" 
   },
   { 
     id: 36, 
-    name: "매드몬스터", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/11/06092123/MADMONSTER-debut.jpeg" 
+    name: "늘안암", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240621_116%2F1718964550688DhfTR_JPEG%2FIMG_6889.jpeg" 
   },
   { 
     id: 37, 
-    name: "제로베이스원", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/23194345/ZEROBASEONE-1.jpeg" 
+    name: "The Hub", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzExMjdfMTc5%2FMDAxNzAxMDM5NTEzODE0.rB4yKf6Y-0DiBsCg99Wl0WQihBXk5ds469Lpg1E6oMEg.idQiKREnWTlAFlRuqx552AiPrsjexAzUrkNPEQsmXIYg.JPEG.wowdobaneul%2FIMG_0953.jpg" 
   },
   { 
     id: 38, 
-    name: "아일릿", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/31232048/ILLIT-debut.jpeg" 
+    name: "역전할머니맥주", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDAyMjlfMyAg%2FMDAxNzA5MjA1ODg0MjY1.Vj70umDxjnxPVnkwpQmHsMFxW0Dklt0onaejVA7KUd0g.UP_yuNL5F1nIY4L0mnkVOBJGrPwvdiNa-VfJ1SFPXKsg.JPEG%2F20240224_175137.jpg.jpg%3Ftype%3Dw1500_60_sharpen" 
   },
   { 
     id: 39, 
-    name: "트리플에스", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/23194913/tripleS-AAA-1.jpg" 
+    name: "두꺼비로맨스", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fimage.nmv.naver.net%2Fblog_2025_01_09_343%2F0LbN3w0cyc_01.jpg" 
   },
   { 
     id: 40, 
-    name: "보이넥스트도어", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/01/24215935/BOYNEXTDOOR.jpeg" 
+    name: "막걸리집", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMzA0MjBfMTc3%2FMDAxNjgxOTkzOTU0MTA1.EEJz2mdxWBD07wwb1g1j6_BKEwVdGP1W87aQP5xvo3Yg.5lRAzEcSLzR0tjxNl0qme5e0QvuDBx0o0omCEVEqKK8g.JPEG%2FIMG_0367.jpeg%3Ftype%3Dw1500_60_sharpen" 
   },
   { 
     id: 41, 
-    name: "오디션", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/09/18094122/ATBO-5.jpeg" 
+    name: "오징어바다", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDEyMDhfMTIx%2FMDAxNzMzNjU5MjUzNTcz.8-qAXwtAhus2kN8TCNo39NnBoCMtKwW_QU7-ckoXVh0g.f7ZMwIHJn4m4FQjy1mDhYvvsulBLhUH2l3FTmis3nHsg.JPEG%2FIMG_4108.JPG" 
   },
   { 
     id: 42, 
-    name: "시그널", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/11/20084147/TWS-debut.jpeg" 
+    name: "오징어나라", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAxMTlfMzEg%2FMDAxNzM3MjIzNTUwNzQy.vxjz-kfcW4ii3BYPBlVy85JNjCrZsnx_M9fn204NFqwg.fre_aBj8ZX8ckc4kGFZ9A2hKFxaLyzgy0Bn4VnZj1Lkg.JPEG%2FKakaoTalk_20250118_233434894.jpg" 
   },
   { 
     id: 43, 
-    name: "하이키", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/07/24090248/H1-KEY-5.jpg" 
+    name: "쿠마", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190708_293%2F1562587982890YNbHK_JPEG%2FElgES_cpQ-TlFQzCNuiB9bXp.jpg" 
   },
   { 
     id: 44, 
-    name: "앨리스", 
-    image: "https://0.soompi.io/wp-content/uploads/2017/07/04084242/ELRIS-3.jpg" 
+    name: "드록바", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDA3MDJfNDgg%2FMDAxNzE5ODU3MTY2MDc5.OTi4VHoYL3u7ahnYNQW1RnoYrLE5pQZG25sgvbo-Z10g.OntXKCGRsC6qNBxly0JrFfExvIkYa_xxpr9aU1Z_J5Qg.JPEG%2F20240701_234949.jpg.jpg%3Ftype%3Dw1500_60_sharpen" 
   },
   { 
     id: 45, 
-    name: "위클리", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/06/07090736/Weeekly-5.jpeg" 
+    name: "호랑이와 곶감", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240919_38%2F1726754756275iMV0r_JPEG%2F1726754712233.jpg" 
   },
   { 
     id: 46, 
-    name: "트라이비", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/10/16095349/TRI.BE-5.jpeg" 
+    name: "호랭이술집", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMTJfMTU4%2FMDAxNjcwODU1NjI5NzEz.EqDD-sfRUArZ9m5OHQWStukbBCOMVMEpWDVOnwIcxzMg.0iT8s_CpYjosgiSe9kXfRDXNYfjXQBE3ewTxAjmg2zog.JPEG.rhddlstjs13%2FIMG_8142.JPG" 
   },
   { 
     id: 47, 
-    name: "갓세븐", 
-    image: "https://0.soompi.io/wp-content/uploads/2019/05/25020442/GOT7-40.jpg" 
+    name: "안암주점", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20250414_135%2F17445882468386w21E_JPEG%2FIMG_0222.jpeg" 
   },
   { 
     id: 48, 
-    name: "세븐틴", 
-    image: "https://0.soompi.io/wp-content/uploads/2023/04/23220826/SEVENTEEN-21.jpeg" 
+    name: "별난주점", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190119_198%2F1547894430496egNj9_JPEG%2F7Xk6l3Trta6N_lEDs6_Cjv62.jpg" 
   },
   { 
     id: 49, 
-    name: "에버글로우", 
-    image: "https://0.soompi.io/wp-content/uploads/2021/05/25175557/Everglow-4.jpeg" 
+    name: "안암꼬치", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20180918_249%2F1537244132239uJWwV_JPEG%2FjA1neFsgJl35b5UrRrMCJog4.jpg" 
   },
   { 
     id: 50, 
-    name: "프로미스나인", 
-    image: "https://0.soompi.io/wp-content/uploads/2022/06/02195309/fromis_9-5.jpeg" 
+    name: "오빠화이팅", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20240513_133%2F17155796695499l8Jg_JPEG%2F%25C5%25A9%25B1%25E2%25BA%25AF%25C8%25AF%25B8%25DE%25B4%25BA%25B8%25F0%25B5%25D2%25BB%25E7%25C1%25F81.jpg" 
+  },
+  { 
+    id: 51, 
+    name: "결찌", 
+    image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA2MTBfODUg%2FMDAxNzE4MDI2MDE3NTM3.MERZFbwiTO5TIcXoWZqY8JYezKeHdK2L8BL3kpxdl7Qg.w4fXjEdJ6BNHFDInPlfF3j3A5A9pI3uGRYpdOPw7-B0g.JPEG%2F20240610%25A3%25DF202233.jpg" 
+  },
+  { 
+    id: 52, 
+    name: "쪼끼쪼끼", 
+    image: "https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20180406_115%2F1523013235531PQ1qj_JPEG%2FSB5ko7LNNmd7U-cEeCiaP-yp.JPG.jpg" 
   },
 ]; 
