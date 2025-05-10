@@ -1,16 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WorldCup from "./pages/worldcup";
-import "./App.css";
+
+import React from 'react';
+import './App.css';
+import Result from './pages/result';
+import Ranking from './pages/ranking';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<WorldCup />} />
-            </Routes>
-        </Router>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Result />} />
+        <Route path="/ranking" element={<Ranking />} />
+        <Route path="/worldcup" element={<WorldCup />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 // 뼈대 라우팅
