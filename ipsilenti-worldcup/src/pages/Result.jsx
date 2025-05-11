@@ -287,7 +287,8 @@ const Button = styled.button`
   transition: all 0.2s;
   position: relative;
   overflow: hidden;
-  min-width: 150px;
+  min-width: 200px;
+  flex: 1;
   
   &::before {
     content: '';
@@ -322,7 +323,7 @@ const Button = styled.button`
   @media (max-width: 900px) {
     padding: 0.9rem 1.7rem;
     font-size: 1.1rem;
-    min-width: 130px;
+    min-width: 180px;
   }
   
   @media (max-width: 600px) {
@@ -991,7 +992,6 @@ const Result = () => {
             <Divider />
             
             <ButtonGroup>
-              <Button onClick={handleSaveImage}>저장</Button>
               <Button onClick={handleShare}>공유(링크 복사)</Button>
               <Button onClick={handleViewRanking}>랭킹 보기</Button>
             </ButtonGroup>
