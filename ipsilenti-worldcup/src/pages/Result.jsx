@@ -31,10 +31,15 @@ const MainLayout = styled.div`
   align-items: flex-start;
   width: 100%;
   min-height: 100%;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 1.5rem;
   }
 `;
 
@@ -50,50 +55,111 @@ const PanelBase = styled.div`
 
 const LeftPanel = styled(PanelBase)`
   flex: 2 1 0;
-  max-width: 855px;
-  min-width: 340px;
-  margin: 2rem 1rem 2rem 2rem;
-  padding: 2.5rem 2rem 2.5rem 2rem;
+  max-width: 800px;
+  min-width: 400px;
+  margin: 2rem 0;
+  padding: 3rem 2.5rem 3rem 2.5rem;
+  position: relative;
+  
   @media (max-width: 900px) {
     margin: 1rem 0;
-    width: 98vw;
-    max-width: 98vw;
-    padding: 1.5rem 0.5rem;
+    width: 95%;
+    max-width: 600px;
+    min-width: 320px;
+    padding: 2rem 1.5rem;
   }
 `;
 
-const RightPanel = styled(PanelBase)`
-  flex: 1 1 0;
-  max-width: 600px;
-  min-width: 320px;
-  margin: 2rem 2rem 2rem 1rem;
-  padding: 2.5rem 2rem 2.5rem 2rem;
-  @media (max-width: 900px) {
-    margin: 0 0 1.5rem 0;
-    width: 98vw;
-    max-width: 98vw;
-    padding: 1.5rem 0.5rem;
+const HomeButton = styled.button`
+  padding: 0.8rem 1.4rem;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background-color: #8b0029;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.2s;
+  overflow: hidden;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 10;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+  
+  &:hover {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.9rem;
+    top: 0.8rem;
+    right: 1rem;
   }
 `;
 
-const WinnerTitle = styled.h2`
-  font-size: 2.2rem;
+const TopSection = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4rem;
+  
+  @media (max-width: 600px) {
+    margin-bottom: 1rem;
+    padding-top: 3.5rem;
+  }
+`;
+
+const ChampionLabel = styled.div`
+  background: #8b0029;
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.7em 1.2em;
+  font-size: 1.6rem;
   font-weight: 900;
-  margin: 2rem 0 0.5rem 0;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  display: block;
+  width: 100%;
   text-align: center;
-  letter-spacing: -1px;
-  color: #000;
-  background: none;
-  span {
-    background: #8b0029;
-    color: #fff;
-    border-radius: 8px;
-    padding: 0.1em 0.7em;
-    margin-left: 0.3em;
-    font-size: 1.1em;
-    font-weight: 900;
-    border: 3px solid #000;
-    box-shadow: 4px 4px 0 #000;
+  box-sizing: border-box;
+  
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    padding: 0.5em 1em;
   }
 `;
 
@@ -104,93 +170,230 @@ const WinnerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding-top: 1rem;
+  
+  @media (max-width: 600px) {
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+  }
 `;
 
 const WinnerImage = styled.img`
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   height: auto;
-  max-height: 600px;
+  max-height: 650px;
   object-fit: contain;
   border-radius: 15px;
-  border: 3px solid #8b0029;
-  box-shadow: 6px 6px 0 #000;
+  border: 5px solid #000;
+  box-shadow: 8px 8px 0 #8b0029;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+  
+  @media (max-width: 600px) {
+    max-width: 100%;
+    max-height: 500px;
+    border: 4px solid #000;
+    box-shadow: 6px 6px 0 #8b0029;
+  }
 `;
 
 const CrownIcon = styled.img`
   position: absolute;
-  top: -40px;
+  top: -30px;
   left: 50%;
   transform: translate(-50%, 0);
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(4px 4px 0px #000);
   z-index: 2;
+  animation: float 3s ease-in-out infinite;
+  
+  @keyframes float {
+    0% { transform: translate(-50%, 0px); }
+    50% { transform: translate(-50%, -10px); }
+    100% { transform: translate(-50%, 0px); }
+  }
+  
   @media (max-width: 600px) {
-    width: 40px;
-    height: 40px;
-    top: -25px;
-    transform: translate(-50%, 0);
+    width: 60px;
+    height: 60px;
+    top: -20px;
   }
 `;
 
-const Button = styled.button`
-  padding: 0.9rem 1.7rem;
-  margin: 0.5rem;
-  border: 3px solid #000;
-  border-radius: 10px;
-  background-color: #8b0029;
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 #000;
-  transition: all 0.2s;
-  &:hover {
-    transform: translate(4px, 4px);
-    box-shadow: none;
-  }
-  &:active {
-    transform: translate(4px, 4px);
-    box-shadow: none;
-  }
+const WinnerTitle = styled.div`
+  font-size: 3rem;
+  color: #222;
+  font-weight: 900;
+  margin: 0.5rem 0 1.5rem 0;
+  text-align: center;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  width: 100%;
+  word-break: keep-all;
+  
   @media (max-width: 600px) {
-    font-size: 1rem;
-    padding: 0.7rem 1.1rem;
+    font-size: 2.2rem;
+    margin: 0.5rem 0 1rem 0;
+  }
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  margin: 0.5rem auto 2.5rem;
+  border-radius: 0;
+  
+  @media (max-width: 600px) {
+    margin: 0.5rem auto 1.5rem;
   }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 1.2rem;
-  margin: 1.5rem 0 0.5rem 0;
+  gap: 1.5rem;
+  margin: 0 0 1rem 0;
   width: 100%;
   justify-content: center;
+  
+  @media (max-width: 900px) {
+    gap: 1.2rem;
+  }
+  
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 0.7rem;
-    width: 100%;
+    width: 90%;
     align-items: stretch;
+  }
+`;
+
+const Button = styled.button`
+  padding: 1rem 2rem;
+  margin: 0;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background-color: #8b0029;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 #000;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  min-width: 150px;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+  
+  &:hover {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 #000;
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+  }
+  
+  @media (max-width: 900px) {
+    padding: 0.9rem 1.7rem;
+    font-size: 1.1rem;
+    min-width: 130px;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    width: 100%;
+  }
+`;
+
+const RightPanel = styled(PanelBase)`
+  flex: 1 1 0;
+  max-width: 550px;
+  min-width: 350px;
+  margin: 2rem 0;
+  padding: 3rem 2.5rem;
+  
+  @media (max-width: 900px) {
+    margin: 0 0 1.5rem 0;
+    width: 95%;
+    max-width: 600px;
+    min-width: 320px;
+    padding: 2rem 1.5rem;
   }
 `;
 
 const CommentSection = styled.div`
   width: 100%;
   max-width: 600px;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  
   @media (max-width: 600px) {
     max-width: 100%;
+    margin-top: 0;
+  }
+`;
+
+const CommentHeader = styled.h3`
+  font-size: 1.8rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.2em;
+  margin-bottom: 1.5rem;
+  
+  span {
+    font-weight: 700;
+    font-size: 1em;
+    color: #8b0029;
+    line-height: 1;
+    margin-left: 0.2em;
+  }
+  
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
   }
 `;
 
 const CommentForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+  
+  @media (max-width: 600px) {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Input = styled.input`
-  padding: 0.8rem;
+  padding: 1rem;
   border: 3px solid #000;
   border-radius: 8px;
   font-size: 1.1rem;
@@ -198,34 +401,54 @@ const Input = styled.input`
   background: #fff;
   color: #000;
   box-shadow: 2px 2px 0 #8b0029;
+  
+  @media (max-width: 600px) {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
 `;
 
 const TextArea = styled.textarea`
-  padding: 0.8rem;
+  padding: 1rem;
   border: 3px solid #000;
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   background: #fff;
   color: #000;
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
   box-shadow: 2px 2px 0 #8b0029;
+  
+  @media (max-width: 600px) {
+    padding: 0.8rem;
+    font-size: 1rem;
+    min-height: 100px;
+  }
 `;
 
 const CommentList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.5rem;
+  
+  @media (max-width: 600px) {
+    gap: 1.2rem;
+  }
 `;
 
 const Comment = styled.div`
-  padding: 1.1rem 1.2rem;
+  padding: 1.3rem 1.5rem;
   background-color: #fff;
   border-radius: 10px;
   border: 3px solid #000;
   box-shadow: 4px 4px 0 #8b0029;
-  font-size: 1.08rem;
+  font-size: 1.1rem;
+  
+  @media (max-width: 600px) {
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+  }
 `;
 
 // 저장용 9:16 캡처 영역 스타일
@@ -246,11 +469,10 @@ const CaptureArea = styled.div`
 const DeleteButton = styled.button`
   background: #fff;
   color: #8b0029;
-  border: 3px solid #8b0029;
+  border: 2px solid #8b0029;
   border-radius: 6px;
-  padding: 0.3rem 0.9rem;
-  margin-left: 1rem;
-  font-size: 1rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 2px 2px 0 #000;
@@ -304,16 +526,15 @@ const LikeButton = styled.button`
   background: #fff;
   border: 2px solid #8b0029;
   color: #8b0029;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  margin-left: 0.5rem;
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
   border-radius: 6px;
   box-shadow: 2px 2px 0 #000;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.5rem;
   transition: all 0.2s;
   &:hover { 
     transform: translate(2px, 2px);
@@ -326,24 +547,23 @@ const BestLabel = styled.div`
   background: #8b0029;
   color: #fff;
   font-weight: 900;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   border-radius: 8px;
-  padding: 0.2em 0.9em;
-  margin-right: 0.7em;
-  border: 2.5px solid #000;
+  padding: 0.2em 0.7em;
+  margin-bottom: 0.4rem;
+  border: 2px solid #000;
   box-shadow: 2px 2px 0 #000;
 `;
 const ReplyToggleBtn = styled.button`
   background: #fff;
   border: 2px solid #8b0029;
   color: #8b0029;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  margin-left: 0.7rem;
   border-radius: 6px;
   box-shadow: 2px 2px 0 #000;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.5rem;
   transition: all 0.2s;
   &:hover { 
     transform: translate(2px, 2px);
@@ -368,6 +588,83 @@ const CrimsonCaptureArea = styled.div`
   top: 0;
 `;
 
+const CommentButtonGroup = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  align-items: center;
+`;
+
+// Add a new styled component for the animation
+const NewCommentHighlight = styled.div`
+  position: relative;
+  overflow: hidden;
+  
+  @keyframes highlight-pulse {
+    0% { background-color: rgba(139, 0, 41, 0.1); }
+    50% { background-color: rgba(139, 0, 41, 0.2); }
+    100% { background-color: rgba(139, 0, 41, 0.1); }
+  }
+  
+  &.is-new {
+    animation: highlight-pulse 1.5s ease-in-out 3;
+    &::before {
+      content: '새 댓글';
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: #8b0029;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      opacity: 1;
+      transition: opacity.5s ease-out;
+    }
+  }
+`;
+
+// Add these styled components for pagination
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 0.8rem;
+`;
+
+const PageButton = styled.button`
+  border: 2px solid #000;
+  background-color: ${props => props.active ? '#8b0029' : '#fff'};
+  color: ${props => props.active ? '#fff' : '#000'};
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #000;
+  transition: all 0.2s;
+  
+  &:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #000;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 3px 3px 0 #000;
+  }
+`;
+
+const PageInfo = styled.div`
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0 1rem;
+`;
+
 const Result = () => {
   const resultRef = useRef(null);
   const crimsonRef = useRef(null);
@@ -380,6 +677,9 @@ const Result = () => {
   const [firebaseError, setFirebaseError] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const [recentCommentId, setRecentCommentId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const commentsPerPage = 10;
   
   // Get winner and theme from location state or set defaults
   const winner = location.state?.winner || {
@@ -496,7 +796,17 @@ const Result = () => {
   };
 
   const handleViewRanking = () => {
-    navigate('/ranking', { state: { theme: theme } });
+    navigate('/ranking', { 
+      state: { 
+        theme: theme,
+        fromResult: true,
+        resultData: {
+          winner: winner,
+          theme: theme,
+          totalRound: totalRound
+        }
+      } 
+    });
   };
 
   const handleCommentSubmit = async (e) => {
@@ -515,6 +825,14 @@ const Result = () => {
         likes: 0, // Initialize likes count
         deviceUUID // ← 기기 UUID 저장
       });
+      
+      // Set this as the recent comment
+      setRecentCommentId(docRef.id);
+      
+      // Remove the highlight after 10 seconds
+      setTimeout(() => {
+        setRecentCommentId(null);
+      }, 10000);
       
       // 내가 작성한 댓글 ID 저장 (삭제 권한용, 백업용)
       const myCommentIds = JSON.parse(localStorage.getItem('myCommentIds') || '[]');
@@ -588,9 +906,40 @@ const Result = () => {
     }
   };
 
-  const sortedComments = [...comments].sort((a, b) => (b.likes || 0) - (a.likes || 0));
-  const bestComments = sortedComments.slice(0, 3);
-  const restComments = sortedComments.slice(3);
+  const sortedByLikes = [...comments].sort((a, b) => (b.likes || 0) - (a.likes || 0));
+  const bestComments = sortedByLikes.slice(0, 3);
+  
+  // Filter out BEST comments, sort by timestamp, and paginate
+  const nonBestComments = [...comments]
+    .filter(comment => !bestComments.some(best => best.id === comment.id))
+    .sort((a, b) => {
+      if (a.timestamp && b.timestamp) {
+        return b.timestamp.seconds - a.timestamp.seconds;
+      }
+      return 0;
+    });
+  
+  // Calculate pagination values
+  const totalNonBestComments = nonBestComments.length;
+  const totalPages = Math.ceil(totalNonBestComments / commentsPerPage);
+  
+  // Get comments for current page
+  const indexOfLastComment = currentPage * commentsPerPage;
+  const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+  const currentComments = nonBestComments.slice(indexOfFirstComment, indexOfLastComment);
+  
+  // Pagination control handlers
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  
+  const handlePrevPage = () => {
+    setCurrentPage(prev => Math.max(prev - 1, 1));
+  };
+  
+  const handleNextPage = () => {
+    setCurrentPage(prev => Math.min(prev + 1, totalPages));
+  };
 
   const handleReplyToggle = (commentId) => {
     setShowReplyInput(prev => ({ ...prev, [commentId]: !prev[commentId] }));
@@ -605,6 +954,10 @@ const Result = () => {
   const totalReplyCount = Object.values(replies).reduce((sum, arr) => sum + (arr?.length || 0), 0);
   const totalCommentAndReplyCount = comments.length + totalReplyCount;
 
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
   return (
     <div className="home-root">
       {/* 강제 HEX 색상 적용 (oklch 오류 방지) */}
@@ -615,22 +968,33 @@ const Result = () => {
         }
       `}</style>
       <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32, maxWidth: '100%', width: '100%' }}>
-        <Header />
+        <Header onTitleClick={handleGoHome} />
         
         <MainLayout>
           <LeftPanel>
+            <HomeButton onClick={handleGoHome}>처음으로</HomeButton>
+            <TopSection>
+              <ChampionLabel>
+                {theme} 우승!
+              </ChampionLabel>
+            </TopSection>
+            
             <WinnerContainer>
               <CrownIcon src="/crown.png" alt="Crown" />
               <WinnerImage src={winner.image} alt={winner.name} />
             </WinnerContainer>
+            
+            <WinnerTitle>
+              {winner.name}
+            </WinnerTitle>
+            
+            <Divider />
+            
             <ButtonGroup>
               <Button onClick={handleSaveImage}>저장</Button>
               <Button onClick={handleShare}>공유(링크 복사)</Button>
               <Button onClick={handleViewRanking}>랭킹 보기</Button>
             </ButtonGroup>
-            <WinnerTitle>
-              {winner.name} <span>{theme} 우승!</span>
-            </WinnerTitle>
           </LeftPanel>
           <RightPanel>
             {firebaseError ? (
@@ -640,18 +1004,10 @@ const Result = () => {
               </div>
             ) : (
               <CommentSection>
-                <h3 style={{fontSize: '3em', display: 'flex', alignItems: 'baseline', gap: '0.2em'}}>
+                <CommentHeader>
                   전체 댓글
-                  <span style={{
-                    fontWeight: 700,
-                    fontSize: '1em',
-                    color: '#8b0029',
-                    lineHeight: 1,
-                    marginLeft: '0.2em'
-                  }}>
-                    ({totalCommentAndReplyCount}개)
-                  </span>
-                </h3>
+                  <span>({totalCommentAndReplyCount}개)</span>
+                </CommentHeader>
                 
                 <CommentForm onSubmit={handleCommentSubmit}>
                   <Input
@@ -669,100 +1025,153 @@ const Result = () => {
                 </CommentForm>
                 
                 <CommentList>
+                  {/* Always render BEST comments */}
                   {bestComments.map((comment, idx) => {
                     const canDelete = comment.deviceUUID === deviceUUID;
+                    const isNew = comment.id === recentCommentId;
                     return (
-                      <Comment key={comment.id}>
-                        <h4>
+                      <NewCommentHighlight key={comment.id} className={isNew ? 'is-new' : ''}>
+                        <Comment>
                           <BestLabel>BEST {idx+1}</BestLabel>
-                          {comment.nickname}
-                          {canDelete && (
-                            <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
-                              삭제
-                            </DeleteButton>
+                          <h4>
+                            {comment.nickname}
+                          </h4>
+                          <p>{comment.comment}</p>
+                          <small>{comment.timestamp?.toDate ? new Date(comment.timestamp.toDate()).toLocaleString() : ''}</small>
+                          <CommentButtonGroup>
+                            {canDelete && (
+                              <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
+                                삭제
+                              </DeleteButton>
+                            )}
+                            <LikeButton onClick={() => handleLike(comment.id)} disabled={JSON.parse(localStorage.getItem('likedComments') || '{}')[comment.id]}>
+                              ❤️ {comment.likes || 0}
+                            </LikeButton>
+                            <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
+                              답글 {replies[comment.id]?.length || 0}
+                            </ReplyToggleBtn>
+                          </CommentButtonGroup>
+                          {showReplyInput[comment.id] && (
+                            <>
+                              <ReplyList>
+                                {replies[comment.id]?.map(reply => (
+                                  <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
+                                    <b>{reply.nickname}</b>: {reply.comment}
+                                    <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
+                                      {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
+                                    </span>
+                                  </div>
+                                ))}
+                              </ReplyList>
+                              <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
+                                <ReplyInput
+                                  type="text"
+                                  placeholder="답글 달기"
+                                  value={replyText[comment.id] || ''}
+                                  onChange={e => handleReplyInput(comment.id, e.target.value)}
+                                />
+                                <ReplyButton type="submit">등록</ReplyButton>
+                              </ReplyForm>
+                            </>
                           )}
-                          <LikeButton onClick={() => handleLike(comment.id)} disabled={JSON.parse(localStorage.getItem('likedComments') || '{}')[comment.id]}>
-                            ❤️ {comment.likes || 0}
-                          </LikeButton>
-                          <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
-                            답글 {replies[comment.id]?.length || 0}
-                          </ReplyToggleBtn>
-                        </h4>
-                        <p>{comment.comment}</p>
-                        <small>{comment.timestamp?.toDate ? new Date(comment.timestamp.toDate()).toLocaleString() : ''}</small>
-                        {showReplyInput[comment.id] && (
-                          <>
-                            <ReplyList>
-                              {replies[comment.id]?.map(reply => (
-                                <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
-                                  <b>{reply.nickname}</b>: {reply.comment}
-                                  <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
-                                    {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
-                                  </span>
-                                </div>
-                              ))}
-                            </ReplyList>
-                            <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
-                              <ReplyInput
-                                type="text"
-                                placeholder="답글 달기"
-                                value={replyText[comment.id] || ''}
-                                onChange={e => handleReplyInput(comment.id, e.target.value)}
-                              />
-                              <ReplyButton type="submit">등록</ReplyButton>
-                            </ReplyForm>
-                          </>
-                        )}
-                      </Comment>
+                        </Comment>
+                      </NewCommentHighlight>
                     );
                   })}
-                  {restComments.map((comment) => {
+                  
+                  {/* Render paginated comments */}
+                  {currentComments.map((comment) => {
                     const canDelete = comment.deviceUUID === deviceUUID;
+                    const isNew = comment.id === recentCommentId;
                     return (
-                      <Comment key={comment.id}>
-                        <h4>
-                          {comment.nickname}
-                          {canDelete && (
-                            <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
-                              삭제
-                            </DeleteButton>
+                      <NewCommentHighlight key={comment.id} className={isNew ? 'is-new' : ''}>
+                        <Comment>
+                          <h4>
+                            {comment.nickname}
+                          </h4>
+                          <p>{comment.comment}</p>
+                          <small>{comment.timestamp?.toDate ? new Date(comment.timestamp.toDate()).toLocaleString() : ''}</small>
+                          <CommentButtonGroup>
+                            {canDelete && (
+                              <DeleteButton onClick={() => handleDeleteComment(comment.id)}>
+                                삭제
+                              </DeleteButton>
+                            )}
+                            <LikeButton onClick={() => handleLike(comment.id)} disabled={JSON.parse(localStorage.getItem('likedComments') || '{}')[comment.id]}>
+                              ❤️ {comment.likes || 0}
+                            </LikeButton>
+                            <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
+                              답글 {replies[comment.id]?.length || 0}
+                            </ReplyToggleBtn>
+                          </CommentButtonGroup>
+                          {showReplyInput[comment.id] && (
+                            <>
+                              <ReplyList>
+                                {replies[comment.id]?.map(reply => (
+                                  <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
+                                    <b>{reply.nickname}</b>: {reply.comment}
+                                    <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
+                                      {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
+                                    </span>
+                                  </div>
+                                ))}
+                              </ReplyList>
+                              <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
+                                <ReplyInput
+                                  type="text"
+                                  placeholder="답글 달기"
+                                  value={replyText[comment.id] || ''}
+                                  onChange={e => handleReplyInput(comment.id, e.target.value)}
+                                />
+                                <ReplyButton type="submit">등록</ReplyButton>
+                              </ReplyForm>
+                            </>
                           )}
-                          <LikeButton onClick={() => handleLike(comment.id)} disabled={JSON.parse(localStorage.getItem('likedComments') || '{}')[comment.id]}>
-                            ❤️ {comment.likes || 0}
-                          </LikeButton>
-                          <ReplyToggleBtn onClick={() => handleReplyToggle(comment.id)}>
-                            답글 {replies[comment.id]?.length || 0}
-                          </ReplyToggleBtn>
-                        </h4>
-                        <p>{comment.comment}</p>
-                        <small>{comment.timestamp?.toDate ? new Date(comment.timestamp.toDate()).toLocaleString() : ''}</small>
-                        {showReplyInput[comment.id] && (
-                          <>
-                            <ReplyList>
-                              {replies[comment.id]?.map(reply => (
-                                <div key={reply.id} style={{background:'#f7f7fa', borderRadius:6, padding:'0.5rem 1rem'}}>
-                                  <b>{reply.nickname}</b>: {reply.comment}
-                                  <span style={{fontSize:'0.85em', color:'#888', marginLeft:8}}>
-                                    {reply.timestamp?.toDate ? new Date(reply.timestamp.toDate()).toLocaleString() : ''}
-                                  </span>
-                                </div>
-                              ))}
-                            </ReplyList>
-                            <ReplyForm onSubmit={e => handleReplySubmit(e, comment.id)}>
-                              <ReplyInput
-                                type="text"
-                                placeholder="답글 달기"
-                                value={replyText[comment.id] || ''}
-                                onChange={e => handleReplyInput(comment.id, e.target.value)}
-                              />
-                              <ReplyButton type="submit">등록</ReplyButton>
-                            </ReplyForm>
-                          </>
-                        )}
-                      </Comment>
+                        </Comment>
+                      </NewCommentHighlight>
                     );
                   })}
                 </CommentList>
+                
+                {/* Pagination controls */}
+                {totalPages > 0 && (
+                  <PaginationContainer>
+                    <PageButton onClick={handlePrevPage} disabled={currentPage === 1}>
+                      이전
+                    </PageButton>
+                    
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      let pageNum;
+                      if (totalPages <= 5) {
+                        // If 5 or fewer pages, show all page numbers
+                        pageNum = i + 1;
+                      } else if (currentPage <= 3) {
+                        // If near the start, show first 5 pages
+                        pageNum = i + 1;
+                      } else if (currentPage >= totalPages - 2) {
+                        // If near the end, show last 5 pages
+                        pageNum = totalPages - 4 + i;
+                      } else {
+                        // Otherwise show current page and 2 on each side
+                        pageNum = currentPage - 2 + i;
+                      }
+                      
+                      return (
+                        <PageButton 
+                          key={pageNum}
+                          active={pageNum === currentPage}
+                          onClick={() => handlePageChange(pageNum)}
+                        >
+                          {pageNum}
+                        </PageButton>
+                      );
+                    })}
+                    
+                    <PageButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+                      다음
+                    </PageButton>
+                  </PaginationContainer>
+                )}
               </CommentSection>
             )}
           </RightPanel>

@@ -18,7 +18,7 @@ const FooterContainer = styled.footer`
 const Footer = () => {
   return (
     <FooterContainer className="home-footer">
-      © 2025 IPSELENTI 월드컵
+      © 입실렌티 월드컵 from NEXT 2025
     </FooterContainer>
   );
 };
