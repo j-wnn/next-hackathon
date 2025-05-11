@@ -61,7 +61,7 @@ const CandidateWrapper = styled.div`
 const Worldcup = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const selectedTheme = location.state?.selectedTheme || "라인업 월드컵"; // Default theme if none selected
+    const selectedTheme = location.state?.selectedTheme || "입실렌티 라인업 월드컵"; // Default theme if none selected
     const selectedRound = location.state?.selectedRound || 8; // Default to 8 if not specified
 
     const [items, setItems] = useState([]);
@@ -384,6 +384,8 @@ const Worldcup = () => {
                 setCurrentStage(nextStage);
                 setCurrentPair([newWinners[0], newWinners[1]]);
             } else {
+                // Update currentStage to 2 (final) before navigating
+                setCurrentStage(2);
                 setFinalWinner(selected);
                 
                 // Record tournament winner before navigating
@@ -422,7 +424,7 @@ const Worldcup = () => {
                     stages={getStages()}
                     currentStage={currentStage}
                     currentRound={currentRound}
-                    totalRounds={currentStage / 2}
+                    totalRounds={Math.max(1, currentStage / 2)}
                     themeName={selectedTheme}
                 />
 

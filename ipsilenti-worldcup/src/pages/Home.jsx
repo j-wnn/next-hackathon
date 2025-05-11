@@ -3,8 +3,35 @@ import { useNavigate } from 'react-router-dom';
 import GridSection from '../components/GridSection';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Button } from '../components/ui/button';
+import styled from '@emotion/styled';
 import '../styles/home.css';
+
+const RankingButton = styled.button`
+  padding: 0.9rem 1.7rem;
+  margin: 0.5rem;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background-color: #8b0029;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.2s;
+  min-width: 200px;
+  &:hover {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 0.7rem 1.1rem;
+  }
+`;
 
 const Home = () => {
   const navigate = useNavigate();
@@ -43,25 +70,9 @@ const Home = () => {
           position: 'relative',
           zIndex: 2 
         }}>
-          <Button 
-            onClick={handleRankingClick}
-            style={{
-              backgroundColor: '#8b0029',
-              color: 'white',
-              fontSize: '1.2rem',
-              fontWeight: '700',
-              padding: '1.2rem 2.5rem',
-              borderRadius: '8px',
-              boxShadow: '4px 4px 0 #000',
-              border: '2px solid #000',
-              transition: 'all 0.2s ease',
-              minWidth: '200px',
-              position: 'relative',
-              overflow: 'hidden'
-            }}
-          >
+          <RankingButton onClick={handleRankingClick}>
             랭킹 보기
-          </Button>
+          </RankingButton>
         </div>
         
         <Footer />

@@ -11,7 +11,7 @@ import { mascotItems } from './mascot';
  * 테마 이름과 아이템 데이터 매핑
  */
 export const themeItems = {
-  "라인업 월드컵": lineupItems,
+  "입실렌티 라인업 월드컵": lineupItems,
   "응원가 월드컵": cheeringItems,
   "막걸리 월드컵": makgeolliItems,
   "안암 술집 월드컵": anamPubItems,
@@ -27,7 +27,7 @@ export const themeNames = Object.keys(themeItems);
  * 테마별 아이템 개수
  */
 export const themeItemCounts = {
-  "라인업 월드컵": lineupItems.length,
+  "입실렌티 라인업 월드컵": lineupItems.length,
   "응원가 월드컵": cheeringItems.length,
   "막걸리 월드컵": makgeolliItems.length,
   "안암 술집 월드컵": anamPubItems.length,

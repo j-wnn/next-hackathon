@@ -13,13 +13,19 @@ import { themeNames } from "../data/themes"; // Import theme names from themes i
 
 const TableWrap = styled.div`
   width: 100%;
-  padding: 1.5rem 1rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
   min-height: 100%;
   background-color: #fff;
+  border-radius: 16px;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  position: relative;
 
   @media (max-width: 768px) {
-    padding: 1rem 0.5rem;
-    margin: 0;
+    padding: 1.5rem 1rem;
+    margin: 1rem auto;
   }
 `;
 
@@ -27,7 +33,9 @@ const FilterSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px dashed #eee;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -47,56 +55,70 @@ const SearchSection = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-top: 3.5rem;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #000;
+  padding-bottom: 0.8rem;
+  border-bottom: 3px solid #eee;
+  letter-spacing: -0.5px;
+
+  span {
+    color: #8b0029;
+  }
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.7rem;
+    margin-top: 3rem;
+    margin-bottom: 1.2rem;
   }
 `;
 
 const Table = styled.table`
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  border: 2px solid #000;
+  border-radius: 8px;
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 `;
 
 const Th = styled.th`
-  padding: 0.75rem;
+  padding: 0.9rem 0.75rem;
   text-align: left;
-  background-color: #f8f9fa;
-  border-bottom: 2px solid #dee2e6;
-  font-weight: 600;
-  color: #495057;
+  background-color: #8b0029;
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 2px solid #000;
 
   @media (max-width: 768px) {
-    padding: 0.5rem;
+    padding: 0.7rem 0.5rem;
   }
 `;
 
 const Td = styled.td`
   padding: 0.75rem;
   border-bottom: 1px solid #dee2e6;
-  color: #495057;
+  color: #333;
 
   @media (max-width: 768px) {
-    padding: 0.5rem;
+    padding: 0.6rem 0.5rem;
   }
 `;
 
 const RankCell = styled(Td)`
-  font-weight: 600;
-  color: #495057;
+  font-weight: 800;
+  color: #000;
   width: 60px;
   text-align: center;
+  background: ${props => props.rank <= 3 ? '#f9f3e0' : 'transparent'};
 
   @media (max-width: 768px) {
     width: 40px;
@@ -104,8 +126,8 @@ const RankCell = styled(Td)`
 `;
 
 const NameCell = styled(Td)`
-  font-weight: 500;
-  color: #212529;
+  font-weight: 600;
+  color: #000;
   width: 200px;
 
   @media (max-width: 768px) {
@@ -114,8 +136,8 @@ const NameCell = styled(Td)`
 `;
 
 const ScoreCell = styled(Td)`
-  font-weight: 600;
-  color: #0d6efd;
+  font-weight: 700;
+  color: #8b0029;
   text-align: right;
   width: 100px;
 
@@ -125,7 +147,7 @@ const ScoreCell = styled(Td)`
 `;
 
 const ThemeCell = styled(Td)`
-  color: #6c757d;
+  color: #555;
   width: 150px;
 
   @media (max-width: 768px) {
@@ -134,7 +156,7 @@ const ThemeCell = styled(Td)`
 `;
 
 const DateCell = styled(Td)`
-  color: #6c757d;
+  color: #555;
   width: 120px;
 
   @media (max-width: 768px) {
@@ -143,43 +165,110 @@ const DateCell = styled(Td)`
 `;
 
 const FilterButton = styled.button`
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  background-color: ${props => props.active ? '#0d6efd' : '#fff'};
-  color: ${props => props.active ? '#fff' : '#495057'};
+  padding: 0.6rem 1.2rem;
+  margin-right: 0.6rem;
+  border: 3px solid #000;
+  border-radius: 8px;
+  background-color: ${props => props.active ? '#8b0029' : '#fff'};
+  color: ${props => props.active ? '#fff' : '#000'};
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  box-shadow: 3px 3px 0 #000;
 
   &:hover {
-    background-color: ${props => props.active ? '#0b5ed7' : '#f8f9fa'};
+    transform: translate(3px, 3px);
+    box-shadow: none;
   }
 
   @media (max-width: 768px) {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    margin-right: 0.3rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+    margin-right: 0.4rem;
   }
 `;
 
 const SearchInput = styled.input`
-  padding: 0.5rem;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
+  padding: 0.7rem 1rem;
+  border: 3px solid #000;
+  border-radius: 8px;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 3px 3px 0 #000;
+  transition: all 0.2s;
 
   &:focus {
     outline: none;
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+    border-color: #8b0029;
+    transform: translate(3px, 3px);
+    box-shadow: none;
   }
 
   @media (max-width: 768px) {
-    padding: 0.4rem;
-    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+`;
+
+const HomeButton = styled.button`
+  padding: 0.7rem 1.2rem;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background-color: #8b0029;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.2s;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 5;
+  
+  &:hover {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.9rem;
+  }
+`;
+
+const BackButton = styled.button`
+  padding: 0.6rem 0.9rem;
+  border: 3px solid #000;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #000;
+  font-size: 1.3rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.2s;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 5;
+  
+  &:hover {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.7rem;
   }
 `;
 
@@ -190,9 +279,15 @@ const Ranking = () => {
   const [themeStats, setThemeStats] = useState({
     totalGames: 0
   });
-  const [selectedTheme, setSelectedTheme] = useState("라인업 월드컵");
+  const [selectedTheme, setSelectedTheme] = useState("입실렌티 라인업 월드컵");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const [cameFromResult, setCameFromResult] = useState(false);
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -238,6 +333,11 @@ const Ranking = () => {
       setSelectedTheme(location.state.theme);
     } else {
       console.log("Using default theme:", selectedTheme);
+    }
+    
+    // Check if came from Result page
+    if (location.state?.fromResult) {
+      setCameFromResult(true);
     }
   }, [location.state]);
 
@@ -317,12 +417,47 @@ const Ranking = () => {
     setSearch(searchInput);
   };
 
-  // Force refresh ranking data
+  // Force refresh ranking data with delay
   const handleRefresh = () => {
     console.log("Manual refresh requested");
-    // Re-fetch with same theme to force refresh
-    const currentTheme = selectedTheme;
-    setSelectedTheme(currentTheme);
+    
+    // Set refreshing state
+    setRefreshing(true);
+    
+    // Add artificial delay
+    setTimeout(() => {
+      // Re-fetch with same theme to force refresh
+      const currentTheme = selectedTheme;
+      setSelectedTheme(currentTheme);
+      
+      // Reset refreshing state after a short delay (to allow for transition effects)
+      setTimeout(() => {
+        setRefreshing(false);
+      }, 100);
+    }, 500);
+  };
+
+  // Handle pagination
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleGoHome = () => {
+    navigate('/');
+  };
+  
+  const handleGoBack = () => {
+    if (cameFromResult) {
+      // Navigate back to the result page with the same parameters if available
+      navigate('/result', { 
+        state: location.state?.resultData || {}
+      });
+    } else {
+      // Fallback to home if somehow the back button is shown but not from result
+      navigate('/');
+    }
   };
 
   // Filter items by search
@@ -344,13 +479,33 @@ const Ranking = () => {
     return bMatchRate - aMatchRate;
   });
 
+  // Calculate paginated items
+  const pageCount = Math.ceil(sortedItems.length / itemsPerPage);
+  const paginatedItems = sortedItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <div className="home-root">
-      <div className="container" style={{ minHeight: 'auto', justifyContent: 'flex-start', paddingTop: 32, maxWidth: '100%', backgroundColor: '#f5f7fa' }}>
-        <Header />
+      <div className="container" style={{ 
+        minHeight: 'auto', 
+        justifyContent: 'flex-start', 
+        paddingTop: 32, 
+        maxWidth: '100%', 
+        backgroundColor: '#ffffff',
+        paddingBottom: '2rem'
+      }}>
+        <Header onTitleClick={handleGoHome} />
         
         <TableWrap>
-          <Title>{selectedTheme} 랭킹</Title>
+          {cameFromResult && (
+            <BackButton onClick={handleGoBack}>
+              &lt;
+            </BackButton>
+          )}
+          <HomeButton onClick={handleGoHome}>처음으로</HomeButton>
+          <Title><span>{selectedTheme}</span> 랭킹</Title>
           
           <FilterSection>
             <ThemeSelector
@@ -369,11 +524,16 @@ const Ranking = () => {
           </FilterSection>
           
           <RankingTable
-            items={sortedItems}
+            items={paginatedItems}
             totalGames={themeStats.totalGames}
             loading={loading}
+            refreshing={refreshing}
             error={error}
             onRefresh={handleRefresh}
+            currentPage={currentPage}
+            pageCount={pageCount}
+            onPageChange={onPageChange}
+            totalItems={sortedItems.length}
           />
         </TableWrap>
         

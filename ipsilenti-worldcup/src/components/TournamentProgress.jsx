@@ -111,6 +111,10 @@ const CurrentRoundInfo = styled.div`
   border-radius: 8px;
 `;
 
+const Spacer = styled.div`
+  height: 2.1rem; /* Match the height of CurrentRoundInfo + its margins */
+`;
+
 /**
  * A reusable tournament progress component
  * 
@@ -156,11 +160,25 @@ const TournamentProgress = ({
     }
   }
   
+  // 결승 라운드 (currentStage === 2) 체크
+  const isFinalRound = currentStage === 2;
+  
   // 스텝 상태 계산 - 인덱스 기반으로 변경
-  const getStepStatus = (idx) => {
-    if (idx < currentStageIndex) return 'done';     // 현재보다 왼쪽(이전 단계)는 완료
-    if (idx === currentStageIndex) return 'active'; // 현재 단계는 활성
-    return 'todo';                                 // 현재보다 오른쪽(이후 단계)는 미완료
+  const getStepStatus = (idx, stage) => {
+    // 결승 라운드인 경우 마지막 아이콘(결승)을 활성화하고 나머지는 완료 처리
+    if (isFinalRound) {
+      // 마지막 아이콘(결승)인 경우
+      if (idx === stages.length - 1) {
+        return 'active';
+      }
+      // 결승이 아닌 이전 단계는 모두 완료됨
+      return 'done';
+    }
+    
+    // 기존 로직
+    if (idx < currentStageIndex) return 'done';
+    if (idx === currentStageIndex) return 'active';
+    return 'todo';
   };
 
   // 라벨 텍스트 생성
@@ -193,16 +211,21 @@ const TournamentProgress = ({
         <StepsContainer>
           {stages.map((stage, idx) => (
             <StepWrapper key={stage || idx}>
-              <ProgressStep status={getStepStatus(idx)}>
+              <ProgressStep status={getStepStatus(idx, stage)}>
                 {getStepText(stage, idx)}
               </ProgressStep>
             </StepWrapper>
           ))}
         </StepsContainer>
         
-        <CurrentRoundInfo>
-          {currentRound}/{calculatedTotalRounds} 라운드
-        </CurrentRoundInfo>
+        {/* 결승에서는 라운드 정보를 표시하지 않고 같은 높이의 spacer를 표시 */}
+        {isFinalRound ? (
+          <Spacer />
+        ) : (
+          <CurrentRoundInfo>
+            {currentRound}/{calculatedTotalRounds} 라운드
+          </CurrentRoundInfo>
+        )}
       </ProgressBarContainer>
     </ProgressContainer>
   );
