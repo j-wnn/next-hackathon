@@ -489,7 +489,13 @@ const ReplyForm = styled.form`
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
 `;
+
 const ReplyInput = styled.input`
   flex: 1;
   padding: 0.5rem;
@@ -499,7 +505,14 @@ const ReplyInput = styled.input`
   font-weight: 600;
   background: #fff;
   color: #000;
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
 `;
+
 const ReplyButton = styled.button`
   padding: 0.5rem 1.1rem;
   border: 2px solid #8b0029;
@@ -515,7 +528,15 @@ const ReplyButton = styled.button`
     transform: translate(2px, 2px);
     box-shadow: none;
   }
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+  }
 `;
+
 const ReplyList = styled.div`
   margin-left: 1.5rem;
   margin-top: 0.5rem;
@@ -523,6 +544,7 @@ const ReplyList = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 `;
+
 const LikeButton = styled.button`
   background: #fff;
   border: 2px solid #8b0029;
@@ -555,6 +577,7 @@ const BestLabel = styled.div`
   border: 2px solid #000;
   box-shadow: 2px 2px 0 #000;
 `;
+
 const ReplyToggleBtn = styled.button`
   background: #fff;
   border: 2px solid #8b0029;
