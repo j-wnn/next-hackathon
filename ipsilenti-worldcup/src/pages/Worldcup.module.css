@@ -1,0 +1,242 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-top: 20px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.progressContainer {
+    width: 100%;
+    background: white;
+    padding: 15px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px 0 20px;
+    max-width: 800px;
+}
+
+.progressBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.progressStep {
+    width: 60px;
+    padding: 5px 5px;
+    background: #e0e0e0;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.progressStep.active {
+    background: #4caf50;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progressStep:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 2px;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: calc(100vh - 240px);
+    padding: 20px;
+    gap: 40px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 45%;
+    height: 80%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    border: 3px solid transparent;
+    overflow: hidden;
+    transform-origin: center center;
+}
+
+.imageWrapper:hover {
+    border-color: #4caf50;
+    transform: scale(1.02);
+}
+
+.selected {
+    z-index: 100;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.slideLeft {
+    transform: translateX(-200%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slideRight {
+    transform: translateX(200%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.round {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: inline-block;
+}
+
+.candidateImage {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+.name {
+    width: 100%;
+    height: 15%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-top: 20px;
+    }
+
+    .imageContainer {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+        height: calc(100vh - 240px);
+    }
+
+    .imageWrapper {
+        width: 90%;
+        height: calc((100vh - 280px) / 2);
+        margin: 0;
+    }
+
+    .selected {
+        width: 90%;
+        height: calc((100vh - 280px) / 2);
+    }
+
+    .slideLeft {
+        transform: translateY(150%);
+        opacity: 0;
+    }
+
+    .slideRight {
+        transform: translateY(-150%);
+        opacity: 0;
+    }
+
+    .progressContainer {
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .progressStep {
+        width: 50px;
+        font-size: 12px;
+    }
+
+    .round {
+        font-size: 16px;
+        margin-top: 8px;
+        padding: 4px 10px;
+    }
+}
+
+.roundBadge {
+    font-size: 1rem;
+    padding: 0.2rem 0.6rem;
+    background-color: #25c19f;
+    color: white;
+    border-radius: 20px;
+    font-weight: 500;
+}
+/* 데스크톱 애니메이션 */
+@media (min-width: 769px) {
+    .selected {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 45%;
+        height: 70%;
+        z-index: 10;
+    }
+
+    .slideLeft {
+        transform: translateX(-200%);
+        opacity: 0;
+    }
+
+    .slideRight {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+}
